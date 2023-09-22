@@ -17,7 +17,9 @@ return new class extends Migration
             $table->string('title');
             $table->text('description');
             $table->enum('criteria', ['pegawai', 'unit', 'umum']);
-            $table->boolean('status');
+            $table->enum('status', ['AKTIF', 'NON-AKTIF', 'SELESAI']);
+            $table->date('tanggal_mulai');
+            $table->date('tanggal_selesai');
             $table->timestamps();
         });
     }
