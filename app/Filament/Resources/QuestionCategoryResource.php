@@ -19,7 +19,6 @@ class QuestionCategoryResource extends Resource
     protected static ?string $model = QuestionCategory::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-
     public static function form(Form $form): Form
     {
         return $form

@@ -15,7 +15,6 @@ return new class extends Migration
             $table->foreignId('question_category_id')->nullable()->after('survey_id')->constrained();
         });
     }
-
     /**
      * Reverse the migrations.
      */

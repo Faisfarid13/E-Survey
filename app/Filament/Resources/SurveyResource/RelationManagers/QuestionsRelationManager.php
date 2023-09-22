@@ -25,7 +25,6 @@ class QuestionsRelationManager extends RelationManager
                     ->relationship('question_category', 'type')
             ]);
     }
-
     public function table(Table $table): Table
     {
         return $table
