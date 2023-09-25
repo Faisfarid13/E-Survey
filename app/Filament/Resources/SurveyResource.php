@@ -83,7 +83,6 @@ class SurveyResource extends Resource
                 ]),
             ]);
     }
-    
     public static function getRelations(): array
     {
         return [
