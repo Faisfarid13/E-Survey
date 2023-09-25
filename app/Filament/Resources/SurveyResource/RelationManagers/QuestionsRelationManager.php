@@ -49,7 +49,7 @@ class QuestionsRelationManager extends RelationManager
                                 ->getChildComponentContainer()
                                 ->fill())
                                 ,    
-                                Grid::make(2)
+                                Grid::make(1)
                                 ->schema(fn (Get $get): array => match ($get('type')) {
                                     'minLength' => [
                                         Forms\Components\TextInput::make('value')
