@@ -14,6 +14,7 @@ class Question extends Model
     protected $guarded = [
         'id'
     ];
+    protected $casts = ['validation'=> 'array'];
     public function survey()
     {
         return $this->belongsTo(Survey::class);
