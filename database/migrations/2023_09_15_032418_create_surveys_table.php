@@ -14,10 +14,12 @@ return new class extends Migration
         Schema::create('surveys', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->nullable()->constrained();
-            $table->string('title');
+            $table->char('title');
             $table->text('description');
             $table->enum('criteria', ['pegawai', 'unit', 'umum']);
-            $table->boolean('status');
+            $table->enum('status',['aktif', 'non-aktif', 'selesai'] );
+            $table->date('tanggal_mulai' );
+            $table->date('tanggal_selesai' );
             $table->timestamps();
         });
     }
