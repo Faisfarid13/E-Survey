@@ -43,25 +43,25 @@ class QuestionsRelationManager extends RelationManager
                                 ->required()
                                 ->searchable()
                                 ->live()
-                                // ->afterStateUpdated(fn (Select $component) => $component
-                                // ->getContainer()
-                                // ->getComponent('dynamicTypeFields')
-                                // ->getChildComponentContainer()
-                                // ->fill())
-                                //     [
-                                // Grid::make(2)
-                                // ->schema(fn (Get $get): array => match ($get('type')) {
-                                //     'minLength' => [
-                                //         Forms\Components\TextInput::make('value')
-                                //             ->required(),
-                                //     ],
-                                //     'maxLength' => [
-                                //         Forms\Components\TextInput::make('value')
-                                //             ->required(),
-                                //     ],
-                                //     default => [],
-                                // })
-                                // ->key('dynamicTypeFields')]
+                                ->afterStateUpdated(fn (Select $component) => $component
+                                ->getContainer()
+                                ->getComponent('dynamicTypeFields')
+                                ->getChildComponentContainer()
+                                ->fill())
+                                ,    
+                                Grid::make(2)
+                                ->schema(fn (Get $get): array => match ($get('type')) {
+                                    'minLength' => [
+                                        Forms\Components\TextInput::make('value')
+                                            ->required(),
+                                    ],
+                                    'maxLength' => [
+                                        Forms\Components\TextInput::make('value')
+                                            ->required(),
+                                    ],
+                                    default => [],
+                                })
+                                ->key('dynamicTypeFields')
                                 
                                 
                              
