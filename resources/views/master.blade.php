@@ -38,7 +38,7 @@
                         class="btn btn-light bg-white text-black font-3xl rounded-lg font-semibold w-28 h-11 mr-10"><a
                             href="#">Masuk</a></button>
                 </li>
-                <!-- <li class="relative w-32 h-8 group">
+                {{-- <li class="relative w-32 h-8 group">
                     <div class="rounded-full border-white border-2 bg-cover text-absolute inset-y-0 left-0 w-8 h-8"
                         style="background-image: url({{ asset('/asset/profile.svg') }})"></div>
                     <button id="profile-button"
@@ -49,7 +49,7 @@
                         <a href="#">Profile</a>
                         <a href="#">Keluar</a>
                     </div>
-                </li> -->
+                </li> --}}
             </ul>
 
 
@@ -78,7 +78,7 @@
                     <a href="#">Masuk</a>
                 </button>
             </li>
-            <!-- <li class="relative">
+            {{-- <li class="relative">
                 <button class="text-center pb-4 text-white font-semibold hover:text-gray-200"
                     id="username-dropdown-button">Username</button>
                 <div class="hidden space-y-2 bg-white text-black ml-28 mt-20 p-2 rounded-lg shadow-lg absolute left-1/2 transform -translate-x-1/2 -top-20"
@@ -86,7 +86,7 @@
                     <a href="#" class="block w-28 h-8 border border-gray-300 rounded-lg font-semibold">Profile</a>
                     <a href="#" class="block w-28 h-8 border border-gray-300 rounded-lg font-semibold">Keluar</a>
                 </div>
-            </li> -->
+            </li> --}}
         </ul>
     </div>
 
@@ -94,28 +94,28 @@
         <!-- Content Area -->
     </main>
     <script>
-    const profileButton = document.getElementById('profile-button');
-    const profileDropdown = document.getElementById('profile-dropdown');
+    // const profileButton = document.getElementById('profile-button');
+    // const profileDropdown = document.getElementById('profile-dropdown');
 
-    // Toggle the dropdown when the profile button is clicked
-    profileButton.addEventListener('click', () => {
-        profileDropdown.classList.toggle('hidden');
-    });
+    // // Toggle the dropdown when the profile button is clicked
+    // profileButton.addEventListener('click', () => {
+    //     profileDropdown.classList.toggle('hidden');
+    // });
 
-    // Close the dropdown when clicking outside of it
-    window.addEventListener('click', (event) => {
-        if (!profileButton.contains(event.target)) {
-            profileDropdown.classList.add('hidden');
-        }
-    });
+    // // Close the dropdown when clicking outside of it
+    // window.addEventListener('click', (event) => {
+    //     if (!profileButton.contains(event.target)) {
+    //         profileDropdown.classList.add('hidden');
+    //     }
+    // });
 
-    const usernameDropdownButton = document.getElementById('username-dropdown-button');
-    const usernameDropdown = document.getElementById('username-dropdown');
+    // const usernameDropdownButton = document.getElementById('username-dropdown-button');
+    // const usernameDropdown = document.getElementById('username-dropdown');
 
-    // Toggle the dropdown when the username button is clicked
-    usernameDropdownButton.addEventListener('click', () => {
-        usernameDropdown.classList.toggle('hidden');
-    });
+    // // Toggle the dropdown when the username button is clicked
+    // usernameDropdownButton.addEventListener('click', () => {
+    //     usernameDropdown.classList.toggle('hidden');
+    // });
 
     // Close the dropdown when clicking outside of it
     window.addEventListener('click', (event) => {

@@ -42,54 +42,19 @@
 </section>
 <!-- Akhir Survei-->
 <!-- Card -->
+@foreach ($surveys as $survey)
+    
 <div class="mt-5" style="max-width: 80%; margin-left: 10%">
     <div class="row g-0">
         <div class="col-md-12">
-            <h5 class="card-title">Survey Kepuasan</h5>
+            <h5 class="card-title" style="font-weight: bold">{{ $survey->title }}</h5> <br/>
             <p class="card-text">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Molestiae aut, tenetur nulla explicabo qui
-                incidunt nostrum reiciendis ea. Voluptatum doloribus corporis fugit inventore ullam temporibus eos nihil
-                tempora officiis vero!
+                {!! $survey->description !!}
             </p>
         </div>
     </div>
 </div>
-<div class="mt-5" style="max-width: 80%; margin-left: 10%">
-    <div class="row g-0">
-        <div class="col-md-12">
-            <h5 class="card-title">Survey Kepuasan</h5>
-            <p class="card-text">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Molestiae aut, tenetur nulla explicabo qui
-                incidunt nostrum reiciendis ea. Voluptatum doloribus corporis fugit inventore ullam temporibus eos nihil
-                tempora officiis vero!
-            </p>
-        </div>
-    </div>
-</div>
-<div class="mt-5" style="max-width: 80%; margin-left: 10%">
-    <div class="row g-0">
-        <div class="col-md-12">
-            <h5 class="card-title">Survey Kepuasan</h5>
-            <p class="card-text">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Molestiae aut, tenetur nulla explicabo qui
-                incidunt nostrum reiciendis ea. Voluptatum doloribus corporis fugit inventore ullam temporibus eos nihil
-                tempora officiis vero!
-            </p>
-        </div>
-    </div>
-</div>
-<div class="mt-5" style="max-width: 80%; margin-left: 10%">
-    <div class="row g-0">
-        <div class="col-md-12">
-            <h5 class="card-title">Survey Kepuasan</h5>
-            <p class="card-text">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Molestiae aut, tenetur nulla explicabo qui
-                incidunt nostrum reiciendis ea. Voluptatum doloribus corporis fugit inventore ullam temporibus eos nihil
-                tempora officiis vero!
-            </p>
-        </div>
-    </div>
-</div>
+@endforeach
 <!-- Akhir Card -->
 <!-- more -->
 <div class="flex items-center justify-center">
