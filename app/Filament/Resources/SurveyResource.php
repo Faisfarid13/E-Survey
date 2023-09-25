@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\SurveyResource\Pages;
 use App\Filament\Resources\SurveyResource\RelationManagers;
+use App\Filament\Resources\SurveyResource\Widgets\StatsOverview;
 use App\Models\Survey;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -21,6 +22,7 @@ use Filament\Infolists\Components\Section;
 class SurveyResource extends Resource
 {
     protected static ?string $model = Survey::class;
+    protected static ?string $recordTitleAttribute = 'title';
 
     protected static ?string $navigationIcon = 'heroicon-o-document';
 
@@ -28,7 +30,8 @@ class SurveyResource extends Resource
     {
         return $form
         ->schema([
-         Card::make()->schema([
+         Card::make()
+         ->schema([
                 Forms\Components\TextInput::make('title')
                 ->label('Judul')
                 ->alphaNum()
@@ -64,7 +67,7 @@ class SurveyResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('title')->label('Judul')->sortable()->searchable(),
-                Tables\Columns\TextColumn::make('description')->label('Deskripsi'),
+                Tables\Columns\TextColumn::make('description')->label('Deskripsi')->limit(25),
                 Tables\Columns\TextColumn::make('criteria')->label('Kriteria'),
                 Tables\Columns\TextColumn::make('status')->label('Status'),
                 Tables\Columns\TextColumn::make('tanggal_mulai')->label('Tanggal Mulai')->sortable(),
@@ -100,27 +103,32 @@ class SurveyResource extends Resource
             'view' => Pages\ViewSurvey::route('/{record}'),
         ];
     }
+    public static function getWidgets(): array{
+        return [
+            StatsOverview::class
+        ];
+    }
     public static function infolist(Infolist $infolist): Infolist
-{
-    return $infolist
-        ->schema([
-        Section::make('Detail Survey')
+    {
+        return $infolist
             ->schema([
-                Infolists\Components\TextEntry::make('title'),
-                Infolists\Components\TextEntry::make('description'),
-                Infolists\Components\TextEntry::make('criteria'),
-                Infolists\Components\TextEntry::make('status')
-                    ->badge()
-                    ->color(fn (string $state): string => match ($state) {
-                        'AKTIF' => 'success',
-                        'NON-AKTIF' => 'danger',
-                        'SELESAI' => 'warning',
-                    })
-                    ,
-                Infolists\Components\TextEntry::make('tanggal_mulai')->dateTime('d F Y'),
-                Infolists\Components\TextEntry::make('tanggal_selesai')->dateTime('d F Y')
-                    ,
-            ])->columns(2)
-        ]);
-}    
+            Section::make('Detail Survey')
+                ->schema([
+                    Infolists\Components\TextEntry::make('title'),
+                    Infolists\Components\TextEntry::make('description'),
+                    Infolists\Components\TextEntry::make('criteria'),
+                    Infolists\Components\TextEntry::make('status')
+                        ->badge()
+                        ->color(fn (string $state): string => match ($state) {
+                            'AKTIF' => 'success',
+                            'NON-AKTIF' => 'danger',
+                            'SELESAI' => 'warning',
+                        })
+                        ,
+                    Infolists\Components\TextEntry::make('tanggal_mulai')->dateTime('d F Y'),
+                    Infolists\Components\TextEntry::make('tanggal_selesai')->dateTime('d F Y')
+                        ,
+                ])->columns(2)
+            ]);
+    }    
 }
