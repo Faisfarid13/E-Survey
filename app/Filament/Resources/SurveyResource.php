@@ -31,7 +31,7 @@ class SurveyResource extends Resource
          Card::make()->schema([
                 Forms\Components\TextInput::make('title')
                 ->label('Judul')
-                ->alphaNum()
+                // ->alphaNum()
                 ->required(),
                 Forms\Components\Textarea::make('description')
                 ->label('Deskripsi')
