@@ -33,7 +33,7 @@ class SurveyResource extends Resource
                 ->label('Judul')
                 // ->alphaNum()
                 ->required(),
-                Forms\Components\Textarea::make('description')
+                Forms\Components\RichEditor::make('description')
                 ->label('Deskripsi')
                 ->required(),
                 Forms\Components\Select::make('criteria')
