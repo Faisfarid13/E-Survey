@@ -9,11 +9,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Survey extends Model
 {
     use HasFactory;
-<<<<<<< HEAD
-
-    protected $guarded = ['id'];
-}
-=======
     // protected $fillable = [
     //     'user_id',
     //     'title',
@@ -29,4 +24,3 @@ class Survey extends Model
         return $this->hasMany(Question::class);
     }
 }
->>>>>>> 33e9ca32853fe29ec694914f9ffccea68e580b59
