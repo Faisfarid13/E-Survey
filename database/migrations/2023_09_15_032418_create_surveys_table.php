@@ -17,13 +17,10 @@ return new class extends Migration
             $table->char('title');
             $table->text('description');
             $table->enum('criteria', ['pegawai', 'unit', 'umum']);
-            $table->enum('status',['aktif', 'non-aktif', 'selesai'] );
-            $table->date('tanggal_mulai' );
-            $table->date('tanggal_selesai' );
+            $table->boolean('status');
             $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      */
