@@ -12,17 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->after('name', function ($table) {
-                $table->string('nip',18)->nullable();
-                $table->string('pangkat')->nullable();
-                $table->string('place_of_birth')->nullable();
-                $table->dateTime('date_of_birth')->nullable();
-                $table->boolean('gender')->nullable();
-                $table->string('pendidikan')->nullable();
-                $table->string('phone_number')->nullable();
-                $table->foreignId('unit_id')->nullable()->constrained();
-                $table->foreignId('position_id')->nullable()->constrained();
-            });
+            $table->char('nip',18)->nullable();
+            $table->string('pangkat')->nullable();
+            $table->string('place_of_birth')->nullable();
+            $table->dateTime('date_of_birth')->nullable();
+            $table->boolean('gender')->nullable();
+            $table->string('pendidikan')->nullable();
+            $table->string('phone_number')->nullable();
+            $table->foreignId('unit_id')->nullable()->constrained();
+            $table->foreignId('position_id')->nullable()->constrained();
         });
     }
 
