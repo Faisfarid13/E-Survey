@@ -67,7 +67,7 @@ class SurveyResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('title')->label('Judul')->sortable()->searchable(),
-                Tables\Columns\TextColumn::make('description')->label('Deskripsi')->limit(25),
+                Tables\Columns\TextColumn::make('description')->label('Deskripsi')->formatStateUsing(fn (string $state): string => strip_tags($state))->limit(25),
                 Tables\Columns\TextColumn::make('criteria')->label('Kriteria'),
                 Tables\Columns\TextColumn::make('status')->label('Status'),
                 Tables\Columns\TextColumn::make('tanggal_mulai')->label('Tanggal Mulai')->sortable(),
@@ -114,7 +114,7 @@ class SurveyResource extends Resource
             Section::make('Detail Survey')
                 ->schema([
                     Infolists\Components\TextEntry::make('title'),
-                    Infolists\Components\TextEntry::make('description'),
+                    Infolists\Components\TextEntry::make('description')->formatStateUsing(fn (string $state): string => strip_tags($state))->limit(30),
                     Infolists\Components\TextEntry::make('criteria'),
                     Infolists\Components\TextEntry::make('status')
                         ->badge()
