@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('surveys', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->nullable()->constrained();
-            $table->char('title');
+            $table->string('title');
             $table->text('description');
             $table->enum('criteria', ['pegawai', 'unit', 'umum']);
             $table->enum('status', ['AKTIF', 'NON-AKTIF', 'SELESAI']);
