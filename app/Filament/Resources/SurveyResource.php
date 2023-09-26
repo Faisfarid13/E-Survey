@@ -2,21 +2,22 @@
 
 namespace App\Filament\Resources;
 
+use Filament\Forms;
+use Filament\Tables;
+use App\Models\Survey;
+use Filament\Infolists;
+use Filament\Forms\Form;
+use Filament\Tables\Table;
+use Filament\Infolists\Infolist;
+use Filament\Resources\Resource;
+use Filament\Pages\Actions\Action;
+use Filament\Forms\Components\Card;
+use Illuminate\Database\Eloquent\Builder;
+use Filament\Infolists\Components\Section;
 use App\Filament\Resources\SurveyResource\Pages;
+use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\SurveyResource\RelationManagers;
 use App\Filament\Resources\SurveyResource\Widgets\StatsOverview;
-use App\Models\Survey;
-use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
-use Filament\Forms\Components\Card;
-use Filament\Tables;
-use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
-use Filament\Infolists;
-use Filament\Infolists\Infolist;
-use Filament\Infolists\Components\Section;
 
 
 class SurveyResource extends Resource
@@ -69,7 +70,11 @@ class SurveyResource extends Resource
                 Tables\Columns\TextColumn::make('title')->label('Judul')->sortable()->searchable(),
                 Tables\Columns\TextColumn::make('description')->label('Deskripsi')->formatStateUsing(fn (string $state): string => strip_tags($state))->limit(25),
                 Tables\Columns\TextColumn::make('criteria')->label('Kriteria'),
-                Tables\Columns\TextColumn::make('status')->label('Status'),
+                Tables\Columns\TextColumn::make('status')->label('Status')->color(fn (string $state): string => match ($state) {
+                    'AKTIF' => 'success',
+                    'NON-AKTIF' => 'danger',
+                    'SELESAI' => 'warning',
+                }),
                 Tables\Columns\TextColumn::make('tanggal_mulai')->label('Tanggal Mulai')->sortable(),
                 Tables\Columns\TextColumn::make('tanggal_selesai')->label('Tanggal Selesai'),
             ])
