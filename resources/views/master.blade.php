@@ -36,7 +36,7 @@
                 <li class="nav-item">
                     <button type="button"
                         class="btn btn-light bg-white text-black font-3xl rounded-lg font-semibold w-28 h-11 mr-10"><a
-                            href="#">Masuk</a></button>
+                            href="/admin">Masuk</a></button>
                 </li>
                 {{-- <li class="relative w-32 h-8 group">
                     <div class="rounded-full border-white border-2 bg-cover text-absolute inset-y-0 left-0 w-8 h-8"
