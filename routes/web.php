@@ -1,6 +1,8 @@
 <?php
-
+use App\Models\Survey;
 use App\Http\Controllers\SurveyController;
+use App\Http\Controllers\AnswerController;
+use App\Models\Answer;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +16,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 Route::get('/', [SurveyController::class, 'index']);
 Route::get('/riwayats', [SurveyController::class, 'riwayat']);
+
+Route::get('/', function () {
+    return view('homepage');
+});
+
+Route::get('/isiSurvey', [AnswerController::class, 'isiSurvey']);
+Route::get('/', [SurveyController::class, 'index']);
+

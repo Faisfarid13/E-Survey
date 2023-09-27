@@ -2,42 +2,39 @@
 
 namespace App\Filament\Resources;
 
-use Filament\Forms;
-use Filament\Tables;
-use App\Models\Survey;
-use Filament\Infolists;
-use Filament\Forms\Form;
-use Filament\Tables\Table;
-use Filament\Infolists\Infolist;
-use Filament\Resources\Resource;
-use Filament\Pages\Actions\Action;
-use Filament\Forms\Components\Card;
-use Illuminate\Database\Eloquent\Builder;
-use Filament\Infolists\Components\Section;
 use App\Filament\Resources\SurveyResource\Pages;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\SurveyResource\RelationManagers;
-use App\Filament\Resources\SurveyResource\Widgets\StatsOverview;
+use App\Models\Survey;
+use Filament\Forms;
+use Filament\Forms\Form;
+use Filament\Resources\Resource;
+use Filament\Forms\Components\Card;
+use Filament\Tables;
+use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Infolists;
+use Filament\Infolists\Infolist;
+use Filament\Infolists\Components\Section;
 
 
 class SurveyResource extends Resource
 {
     protected static ?string $model = Survey::class;
-    protected static ?string $recordTitleAttribute = 'title';
 
-    protected static ?string $navigationIcon = 'heroicon-o-document';
+    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     public static function form(Form $form): Form
     {
         return $form
         ->schema([
-         Card::make()
-         ->schema([
+         Card::make()->schema([
                 Forms\Components\TextInput::make('title')
                 ->label('Judul')
-                // ->alphaNum()
+
+                
                 ->required(),
-                Forms\Components\RichEditor::make('description')
+                Forms\Components\Textarea::make('description')
                 ->label('Deskripsi')
                 ->required(),
                 Forms\Components\Select::make('criteria')
@@ -67,14 +64,10 @@ class SurveyResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('title')->label('Judul')->sortable()->searchable()->limit(20),
-                Tables\Columns\TextColumn::make('description')->label('Deskripsi')->formatStateUsing(fn (string $state): string => strip_tags($state))->limit(25),
+                Tables\Columns\TextColumn::make('title')->label('Judul')->sortable()->searchable(),
+                Tables\Columns\TextColumn::make('description')->label('Deskripsi'),
                 Tables\Columns\TextColumn::make('criteria')->label('Kriteria'),
-                Tables\Columns\TextColumn::make('status')->label('Status')->color(fn (string $state): string => match ($state) {
-                    'AKTIF' => 'success',
-                    'NON-AKTIF' => 'danger',
-                    'SELESAI' => 'warning',
-                }),
+                Tables\Columns\TextColumn::make('status')->label('Status'),
                 Tables\Columns\TextColumn::make('tanggal_mulai')->label('Tanggal Mulai')->sortable(),
                 Tables\Columns\TextColumn::make('tanggal_selesai')->label('Tanggal Selesai'),
             ])
@@ -91,6 +84,7 @@ class SurveyResource extends Resource
                 ]),
             ]);
     }
+    
     public static function getRelations(): array
     {
         return [
@@ -107,15 +101,13 @@ class SurveyResource extends Resource
             'view' => Pages\ViewSurvey::route('/{record}'),
         ];
     }
-    public static function getWidgets(): array{
-        return [
-            StatsOverview::class
-        ];
-    }
     public static function infolist(Infolist $infolist): Infolist
-    {
-        return $infolist
+{
+    return $infolist
+        ->schema([
+        Section::make('Detail Survey')
             ->schema([
+
             Section::make('Detail Survey')
                 ->schema([
                     Infolists\Components\TextEntry::make('title'),
@@ -137,8 +129,6 @@ class SurveyResource extends Resource
     }  
       
 }
-
-
 
 
 

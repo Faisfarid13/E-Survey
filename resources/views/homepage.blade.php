@@ -43,7 +43,7 @@
 <!-- Akhir Survei-->
 <!-- Card -->
 @foreach ($surveys as $survey)
-    
+<a href="/isiSurvey">   
 <div class="mt-5" style="max-width: 80%; margin-left: 10%">
     <div class="row g-0">
         <div class="col-md-12">
@@ -54,6 +54,7 @@
         </div>
     </div>
 </div>
+</a> 
 @endforeach
 <!-- Akhir Card -->
 <!-- more -->
