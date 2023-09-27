@@ -125,7 +125,10 @@ class SurveyResource extends Resource
                     Infolists\Components\TextEntry::make('tanggal_selesai')->dateTime('d F Y')
                         ,
                 ])->columns(2)
-            ]);
+
+            ])
+                    ]);
+
     }  
       
 }
