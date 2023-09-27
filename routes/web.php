@@ -15,3 +15,4 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [SurveyController::class, 'index']);
+Route::get('/riwayats', [SurveyController::class, 'riwayat']);
