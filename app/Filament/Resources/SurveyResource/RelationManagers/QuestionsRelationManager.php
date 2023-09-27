@@ -26,7 +26,8 @@ class QuestionsRelationManager extends RelationManager
                     ->required()
                     ->maxLength(255),
                 Forms\Components\Select::make('question_category_id')
-                    ->relationship('question_category', 'type'),
+                    ->relationship('question_category', 'type')
+                    ->required(),
                 Forms\Components\Section::make('Validasi')
                     ->schema([
                         Forms\Components\Repeater::make('validation')

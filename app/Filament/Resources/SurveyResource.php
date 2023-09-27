@@ -34,7 +34,6 @@ class SurveyResource extends Resource
          ->schema([
                 Forms\Components\TextInput::make('title')
                 ->label('Judul')
-                // ->alphaNum()
                 ->required(),
                 Forms\Components\RichEditor::make('description')
                 ->label('Deskripsi')

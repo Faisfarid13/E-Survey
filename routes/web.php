@@ -1,5 +1,5 @@
 <?php
-
+use App\Models\Survey;
 use App\Http\Controllers\SurveyController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,4 +14,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [SurveyController::class, 'index']);
+Route::get('/', function () {
+    return view('homepage');
+});
+
+Route::get('/isiSurvey', function () {
+    return view('isiSurvey');
+});
+Route::resource('survey', SurveyController::class);
