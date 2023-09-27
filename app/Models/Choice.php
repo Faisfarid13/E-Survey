@@ -10,6 +10,6 @@ class Choice extends Model
     protected $guarded = ['id'];
     public function questions()
     {
-        return $this->belongsTo(Question::class);
+     return $this->belongsTo(Question::class);
     }
 }

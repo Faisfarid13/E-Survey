@@ -26,8 +26,33 @@ class QuestionsRelationManager extends RelationManager
                     ->required()
                     ->maxLength(255),
                 Forms\Components\Select::make('question_category_id')
-                    ->relationship('question_category', 'type')
-                    ->required(),
+                    ->relationship('question_category', 'type')->relationship('question_category', 'type')
+                    ->live()
+                    ->afterStateUpdated(fn (Select $component) => $component
+                    ->getContainer()
+                    ->getComponent('dynamicTypeFields')
+                    ->getChildComponentContainer()
+                    ->fill())
+                    ,    
+                    Grid::make(1)
+                    ->schema(fn (Get $get): array => match ($get('question_category_id'))
+                    {
+                        '4'=> [
+                            Forms\Components\Repeater::make('answers')
+                            ->schema([
+                                Forms\Components\TextInput::make('value')->label('Skala')->required(),
+                            ])
+                            ],
+                        '5'=> [
+                            Forms\Components\Repeater::make('answers')
+                            ->schema([
+                                Forms\Components\TextInput::make('value')->label('Pilihan Ganda')->required(),
+                            ])
+                            ],
+                        default => [],
+                    }
+                    
+                ),
                 Forms\Components\Section::make('Validasi')
                     ->schema([
                         Forms\Components\Repeater::make('validation')
