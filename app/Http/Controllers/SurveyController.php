@@ -12,4 +12,5 @@ class SurveyController extends Controller
             'surveys' => Survey::all()
         ]);
     }
+
 }
