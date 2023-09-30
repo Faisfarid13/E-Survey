@@ -11,6 +11,8 @@ use Filament\Tables\Table;
 use Faker\Provider\en_US\Text;
 use Filament\Resources\Resource;
 use Filament\Forms\Components\Card;
+use Illuminate\Support\Facades\Hash;
+use Filament\Forms\Components\Select;
 use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
@@ -27,6 +29,7 @@ use App\Filament\Resources\UserResource\Pages\EditUser;
 use App\Filament\Resources\UserResource\Pages\ListUsers;
 use App\Filament\Resources\UserResource\Pages\CreateUser;
 use App\Filament\Resources\UserResource\RelationManagers;
+use App\Filament\Resources\UserResource\RelationManagers\RolesRelationManager;
 
 class UserResource extends Resource
 {
@@ -34,21 +37,43 @@ class UserResource extends Resource
     protected static ?string $recordTitleAttribute = 'name';
     protected static ?string $navigationLabel = 'Manage User';
     protected static ?string $navigationIcon = 'heroicon-o-user';
+    protected static ?string $navigationGroup = 'Settings';
 
     public static function form(Form $form): Form
     {
         return $form
         ->schema([
             Card::make()->schema([
-                TextInput::make('name')->label('Nama.'),
-                TextInput::make('nip')->label('NIP'),
-                TextInput::make('pangkat')->label('Pangkat'),
-                TextInput::make('place_of_birth')->label('Tempat Lahir'),
-                DatePicker::make('date_of_birth')->label('Tanggal Lahir'),
-                TextInput::make('phone_number')->label('No. HP'),
-                TextInput::make('email')->label('Email'),
-                TextInput::make('password')->label('Password')->password(),
-            ]),
+                TextInput::make('name')
+                    ->label('Nama.'),
+                TextInput::make('nip')
+                    ->label('NIP'),
+                TextInput::make('pangkat')
+                    ->label('Pangkat'),
+                TextInput::make('place_of_birth')
+                    ->label('Tempat Lahir'),
+                DatePicker::make('date_of_birth')
+                    ->label('Tanggal Lahir'),
+                TextInput::make('phone_number')
+                    ->label('No. HP')
+                    ->prefix('+62'),
+                TextInput::make('email')
+                    ->label('Email'),
+                TextInput::make('password')
+                    ->label('Password')
+                    ->password()
+                    ->dehydrateStateUsing(fn (string $state): string => Hash::make($state))
+                    ->dehydrated(fn (?string $state): bool => filled($state)),
+                Select::make('roles')
+                        ->label('Role')
+                        ->relationship('roles', 'name')
+                        ->preload(),
+                Select::make('permissions')
+                        ->label('Izin')
+                        ->multiple()
+                        ->relationship('permissions', 'name')
+                        ->preload()
+            ])->columns(2),
          ]);
     }
 
@@ -61,6 +86,7 @@ class UserResource extends Resource
                 TextColumn::make('pangkat')->label('Pangkat'),
                 TextColumn::make('phone_number')->label('No. HP'),
                 TextColumn::make('email')->label('Email'),
+                TextColumn::make('roles.name')->label('Role'),
             ])
             ->filters([
                 //

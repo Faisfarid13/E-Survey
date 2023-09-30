@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Filament\Resources\UserResource\Pages;
+namespace App\Filament\Resources\PermissionResource\Pages;
 
 use Filament\Actions;
-use App\Filament\Resources\UserResource;
 use Filament\Notifications\Notification;
 use Filament\Resources\Pages\EditRecord;
+use App\Filament\Resources\PermissionResource;
 
-class EditUser extends EditRecord
+class EditPermission extends EditRecord
 {
-    protected static string $resource = UserResource::class;
+    protected static string $resource = PermissionResource::class;
 
     protected function getHeaderActions(): array
     {
@@ -17,18 +17,11 @@ class EditUser extends EditRecord
             Actions\DeleteAction::make(),
         ];
     }
-
     protected function getSavedNotification(): ?Notification
     {
         return Notification::make()
             ->success()
             ->title('Berhasil!')
-            ->body('Anda telah memperbarui pengguna.');
-    }
-    protected function mutateFormDataBeforeSave(array $data): array
-    {
-        $data['phone_number'] = '+62'.$data['phone_number'];
-
-        return $data;
+            ->body('Anda telah memperbarui izin.');
     }
 }

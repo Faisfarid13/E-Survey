@@ -14,11 +14,18 @@ class EditProfile extends BaseEditProfile
             ->schema([
                 TextInput::make('phone_number')
                     ->required()
-                    ->maxLength(255),
+                    ->maxLength(255)
+                    ->prefix('+62'),
                 $this->getNameFormComponent(),
                 $this->getEmailFormComponent(),
                 $this->getPasswordFormComponent(),
                 $this->getPasswordConfirmationFormComponent(),
             ]);
+    }
+    protected function mutateFormDataBeforeSave(array $data): array
+    {
+        $data['phone_number'] = '+62'.$data['phone_number'];
+
+        return $data;
     }
 }

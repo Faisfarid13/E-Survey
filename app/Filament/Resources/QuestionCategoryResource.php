@@ -17,7 +17,7 @@ use Filament\Forms\Components\Card;
 class QuestionCategoryResource extends Resource
 {
     protected static ?string $model = QuestionCategory::class;
-
+    protected static ?int $navigationSort = 2;
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
     public static function form(Form $form): Form
     {
