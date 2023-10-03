@@ -34,7 +34,7 @@ class SurveyResource extends Resource
 
                 
                 ->required(),
-                Forms\Components\Textarea::make('description')
+                Forms\Components\RichEditor::make('description')
                 ->label('Deskripsi')
                 ->required(),
                 Forms\Components\Select::make('criteria')
@@ -65,7 +65,7 @@ class SurveyResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('title')->label('Judul')->sortable()->searchable(),
-                Tables\Columns\TextColumn::make('description')->label('Deskripsi'),
+                Tables\Columns\TextColumn::make('description')->label('Deskripsi')->limit(20),
                 Tables\Columns\TextColumn::make('criteria')->label('Kriteria'),
                 Tables\Columns\TextColumn::make('status')->label('Status'),
                 Tables\Columns\TextColumn::make('tanggal_mulai')->label('Tanggal Mulai')->sortable(),

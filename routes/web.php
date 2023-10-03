@@ -2,7 +2,9 @@
 use App\Models\Survey;
 use App\Http\Controllers\SurveyController;
 use App\Http\Controllers\AnswerController;
+use App\Http\Controllers\QuestionController;
 use App\Models\Answer;
+use App\Models\Question;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,9 +18,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('homepage');
-});
-
-Route::get('/isiSurvey', [AnswerController::class, 'isiSurvey']);
+Route::get('/formSurvey/{title}', [QuestionController::class, 'formSurvey']);
+Route::post('/answers/store', [AnswerController::class, 'submitSurvey']);
 Route::get('/', [SurveyController::class, 'index']);
