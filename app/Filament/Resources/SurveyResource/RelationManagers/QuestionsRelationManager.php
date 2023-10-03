@@ -10,9 +10,6 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Get;
-use Filament\Forms\Set;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class QuestionsRelationManager extends RelationManager
 {
@@ -37,22 +34,26 @@ class QuestionsRelationManager extends RelationManager
                     Grid::make(1)
                     ->schema(fn (Get $get): array => match ($get('question_category_id'))
                     {
-                        '4'=> [
-                            Forms\Components\Repeater::make('answers')
+                        '4', '5'=> [
+                            Forms\Components\Repeater::make('choice')
+                            ->relationship()
                             ->schema([
-                                Forms\Components\TextInput::make('value')->label('Skala')->required(),
-                            ])
-                            ],
-                        '5'=> [
-                            Forms\Components\Repeater::make('answers')
-                            ->schema([
-                                Forms\Components\TextInput::make('value')->label('Pilihan Ganda')->required(),
+                                Forms\Components\TextInput::make('pilihan_pertanyaan')->label('Pilihan_pertanyaan')->required(),
                             ])
                             ],
                         default => [],
-                    }
-                    
-                ),
+                    },),
+                
+
+                    Grid::make(1)
+                    ->schema([
+                        Forms\Components\Repeater::make('choice')
+                            ->relationship()
+                            ->schema([
+                                Forms\Components\TextInput::make('pilihan_pertanyaan')->label('Pilihan_pertanyaan')->required(),
+                            ])
+                    ]), //MASIH BELOM BENER LOGIKANYA
+
                 Forms\Components\Section::make('Validasi')
                     ->schema([
                         Forms\Components\Repeater::make('validation')
@@ -88,20 +89,6 @@ class QuestionsRelationManager extends RelationManager
                                     default => [],
                                 })
                                 ->key('dynamicTypeFields')
-                                
-                                
-                             
-                            // Forms\Components\TextInput::make('value')
-                            //     ->hidden(function (Get $get) 
-                            // {
-                            //     if (in_array($get['validation'],['required','numeric','string']))
-                            //     {
-                            //         true;
-                            //     } else{
-                            //         false;
-                            //     }
-                            
-                            // }),
                         ])
                         
                         ->columns(1)
@@ -130,18 +117,10 @@ class QuestionsRelationManager extends RelationManager
                 Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
+                // Tables\Actions\BulkActionGroup::make([
+                //     Tables\Actions\DeleteBulkAction::make(),
+                // ]),
             ]);
     }
 }
 
-// if (in_array($state,['required','numeric','string']))
-// {
-//     $set('value', hidden(true));
-// }
-// else{
-//     $set('value')->hidden(false);
-// }
-// }

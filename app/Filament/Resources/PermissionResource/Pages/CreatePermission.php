@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Filament\Resources\SurveyResource\Pages;
+namespace App\Filament\Resources\PermissionResource\Pages;
 
 use Filament\Actions;
 use Filament\Notifications\Notification;
-use App\Filament\Resources\SurveyResource;
 use Filament\Resources\Pages\CreateRecord;
+use App\Filament\Resources\PermissionResource;
 
-class CreateSurvey extends CreateRecord
+class CreatePermission extends CreateRecord
 {
-    protected static string $resource = SurveyResource::class;
+    protected static string $resource = PermissionResource::class;
     protected function getRedirectUrl(): string
     {
         return $this->getResource()::getUrl('index');
@@ -19,6 +19,6 @@ class CreateSurvey extends CreateRecord
         return Notification::make()
             ->success()
             ->title('Berhasil!')
-            ->body('Anda telah membuat survei baru.');
+            ->body('Anda telah membuat izin baru.');
     }
 }

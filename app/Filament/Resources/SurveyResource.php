@@ -21,8 +21,8 @@ use Filament\Infolists\Components\Section;
 class SurveyResource extends Resource
 {
     protected static ?string $model = Survey::class;
-
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?int $navigationSort = 1;
+    protected static ?string $navigationIcon = 'heroicon-o-document';
 
     public static function form(Form $form): Form
     {
@@ -64,8 +64,8 @@ class SurveyResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('title')->label('Judul')->sortable()->searchable(),
-                Tables\Columns\TextColumn::make('description')->label('Deskripsi')->limit(20),
+                Tables\Columns\TextColumn::make('title')->label('Judul')->sortable()->searchable()->limit(20),
+                Tables\Columns\TextColumn::make('description')->label('Deskripsi')->formatStateUsing(fn (string $state): string => strip_tags($state))->limit(40),
                 Tables\Columns\TextColumn::make('criteria')->label('Kriteria'),
                 Tables\Columns\TextColumn::make('status')->label('Status'),
                 Tables\Columns\TextColumn::make('tanggal_mulai')->label('Tanggal Mulai')->sortable(),
@@ -102,26 +102,32 @@ class SurveyResource extends Resource
         ];
     }
     public static function infolist(Infolist $infolist): Infolist
-{
-    return $infolist
-        ->schema([
-        Section::make('Detail Survey')
+    {
+        return $infolist
             ->schema([
-                Infolists\Components\TextEntry::make('title'),
-                Infolists\Components\TextEntry::make('description'),
-                Infolists\Components\TextEntry::make('criteria'),
-                Infolists\Components\TextEntry::make('status')
-                    ->badge()
-                    ->color(fn (string $state): string => match ($state) {
-                        'AKTIF' => 'success',
-                        'NON-AKTIF' => 'danger',
-                        'SELESAI' => 'warning',
-                    })
-                    ,
-                Infolists\Components\TextEntry::make('tanggal_mulai')->dateTime('d F Y'),
-                Infolists\Components\TextEntry::make('tanggal_selesai')->dateTime('d F Y')
-                    ,
-            ])->columns(2)
-        ]);
-}    
+            Section::make('Detail Survey')
+                ->schema([
+
+                Section::make('Detail Survey')
+                    ->schema([
+                        Infolists\Components\TextEntry::make('title'),
+                        Infolists\Components\TextEntry::make('description')->formatStateUsing(fn (string $state): string => strip_tags($state))->limit(30),
+                        Infolists\Components\TextEntry::make('criteria'),
+                        Infolists\Components\TextEntry::make('status')
+                            ->badge()
+                            ->color(fn (string $state): string => match ($state) {
+                                'AKTIF' => 'success',
+                                'NON-AKTIF' => 'danger',
+                                'SELESAI' => 'warning',
+                            })
+                            ,
+                        Infolists\Components\TextEntry::make('tanggal_mulai')->dateTime('d F Y'),
+                        Infolists\Components\TextEntry::make('tanggal_selesai')->dateTime('d F Y'),
+                    ])->columns(2)
+                ]),
+            ]);
+    }
 }
+
+
+

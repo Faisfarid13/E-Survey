@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class UserSeeder extends Seeder
@@ -13,21 +15,20 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        User::create([
-            'name'	=> fake()->name(),
-            'email'	=> 'admin@gmail.com',
-            'nip' => fake()->randomNumber(9),
-            'pangkat' => 'Komisaris',
-            'password'	=> bcrypt('secret'),
-            'phone_number' => fake()->e164PhoneNumber()
+        $user1 = User::factory()->create([
+            'name' => 'Admin',
+            'email' => 'admin@gmail.com',
+            'password' => bcrypt('secret123'),
         ]);
-        // User::create([
-        //     'name'	=> fake()->name(),
-        //     'email'	=> fake()->unique()->safeEmail(),
-        //     'nip' => fake()->randomNumber(9),
-        //     'pangkat' => 'Komisaris',
-        //     'password'	=> bcrypt('secret'),
-        //     'phone_number' => fake()->e164PhoneNumber()
-        // ]);
+        $user2 = User::factory()->create([
+            'name' => 'Pegawai',
+            'email' => 'pegawai@gmail.com',
+            'password' => bcrypt('secret123'),
+        ]);
+        $role1 = Role::create(['name' => 'Admin']);
+        $role2 = Role::create(['name' => 'Pegawai']);
+        $user1->assignRole($role1);
+        $user2->assignRole($role2);
+
     }
 }

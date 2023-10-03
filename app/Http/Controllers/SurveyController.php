@@ -13,4 +13,10 @@ class SurveyController extends Controller
         ]);
     }
 
+
+    public function riwayat(){
+        return view('riwayatSurvey', [
+            'surveys' => Survey::Where('status', 'SELESAI')->get()
+        ]);
+    }
 }
