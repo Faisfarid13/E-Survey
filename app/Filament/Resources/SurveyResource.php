@@ -16,7 +16,6 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Infolists;
 use Filament\Infolists\Infolist;
 use Filament\Infolists\Components\Section;
-use Illuminate\Database\Eloquent\Model;
 
 class SurveyResource extends Resource
 {
