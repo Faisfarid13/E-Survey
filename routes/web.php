@@ -5,6 +5,7 @@ use App\Http\Controllers\AnswerController;
 use App\Models\Answer;
 use Illuminate\Support\Facades\Route;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
