@@ -20,7 +20,7 @@
             <!-- Menu untuk Desktop -->
             <ul class="hidden md:flex lg:flex space-x-20 text-[#00923F] text-lg font-semibold items-center">
                 <li class="nav-item">
-                    <a class="nav-link text-[#00923F] hover:text-gray-200" href="#">Dashboard</a>
+                    <a class="nav-link text-[#00923F] hover:text-gray-200" href="/">Dashboard</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-[#00923F] hover:text-gray-200" href="#">Survey</a>

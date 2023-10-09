@@ -50,4 +50,8 @@ class User extends Authenticatable implements FilamentUser
         return $this->hasRole(['Admin', 'Pegawai']);
         
     }
+    public function answers()
+    {
+     return $this->belongsTo(Answer::class);
+    }
 }

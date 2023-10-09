@@ -22,6 +22,6 @@ Route::get('/', [SurveyController::class, 'index']);
 Route::get('/riwayats', [SurveyController::class, 'riwayat']);
 
 Route::get('/formSurvey/{title}', [QuestionController::class, 'formSurvey']);
-Route::post('/answers/store', [AnswerController::class, 'submitSurvey']);
+Route::post('/formSurvey/{title}/submit', [AnswerController::class, 'submitSurvey']);
 
 
