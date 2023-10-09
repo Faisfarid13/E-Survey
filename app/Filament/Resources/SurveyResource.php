@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Infolists;
 use Filament\Infolists\Infolist;
 use Filament\Infolists\Components\Section;
-
+use Illuminate\Database\Eloquent\Model;
 
 class SurveyResource extends Resource
 {
@@ -64,8 +64,12 @@ class SurveyResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('title')->label('Judul')->sortable()->searchable(),
-                Tables\Columns\TextColumn::make('description')->label('Deskripsi'),
+                Tables\Columns\TextColumn::make('title')
+                ->label('Judul')->sortable()->searchable()->limit(15)
+                ->tooltip(fn ($state): string => $state),
+                Tables\Columns\TextColumn::make('description')
+                ->label('Deskripsi')->formatStateUsing(fn (string $state): string => strip_tags($state))->limit(15)
+                ->tooltip(fn ($state): string => $state), 
                 Tables\Columns\TextColumn::make('criteria')->label('Kriteria'),
                 Tables\Columns\TextColumn::make('status')->label('Status'),
                 Tables\Columns\TextColumn::make('tanggal_mulai')->label('Tanggal Mulai')->sortable(),

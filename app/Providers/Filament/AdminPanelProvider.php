@@ -18,8 +18,10 @@ use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
 use Filament\Pages\Auth\EditProfile;
+use App\Filament\Pages\Auth\Login;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
+use Illuminate\Support\Facades\Log;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -30,10 +32,12 @@ class AdminPanelProvider extends PanelProvider
             ->sidebarCollapsibleOnDesktop(true)
             ->id('admin')
             ->path('admin')
-            ->login()
+            ->login(Login::class)
             ->colors([
-                'primary' => Color::Amber,
+                'primary' => '#137C13',
             ])
+            ->font('Poppins')
+            ->brandName('e-survey')
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
             ->pages([
@@ -55,6 +59,7 @@ class AdminPanelProvider extends PanelProvider
                 DispatchServingFilamentEvent::class,
             ])
             ->profile(AuthEditProfile::class)
+            ->favicon(asset('asset/logo.svg'))
             ->authGuard('web')
             ->authMiddleware([
                 Authenticate::class,

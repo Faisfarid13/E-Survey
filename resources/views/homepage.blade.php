@@ -1,7 +1,7 @@
 @extends('master')
 @section('content')
 <!--jumbotron-->
-<section class="bg-green-600 w-full p-6 text-center ">
+<section class="bg-[#266C3E] w-full p-6 text-center ">
     <h1 class="mb-4 text-xl font-bold tracking-tight leading-none text-white md:text-4xl lg:text-5xl dark:text-white">
         Selamat Datang di E-Survey</h1>
     <p class="mb-4 text-xl font-bold tracking-tight leading-none text-white md:text-4xl lg:text-2xl dark:text-white">
@@ -59,10 +59,12 @@
 <!-- Akhir Card -->
 <!-- more -->
 <div class="flex items-center justify-center">
+    <a href="/listguest">
     <button type="button"
         class="focus:outline-none text-grey-900 bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 mt-5 dark:focus:ring-yellow-900">
         Survei lebih lanjut
     </button>
+    </a>
 </div>
 <!-- akhir more -->
 @endsection
