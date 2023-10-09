@@ -103,4 +103,11 @@ class AnswerController extends Controller
 
     //     return $messages;
     //}
+
+    public function dashboard(){
+        $now = date('Y-m-d');
+        return view('dashboard', [
+            'datas' => Survey::Where('tanggal_selesai', '>=', $now)->get()
+        ]);
+    }
 }
