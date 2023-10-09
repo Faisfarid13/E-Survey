@@ -76,4 +76,14 @@
         Survei lebih lanjut
       </button>
     </div>
+    <script>
+      function navigateToPage() {
+          // Ganti URL di bawah ini dengan URL halaman yang ingin Anda tuju
+          var newPageUrl = '/isiSurvey';
+      
+          // Mengarahkan browser ke halaman baru
+          window.location.href = newPageUrl;
+      }
+      </script>
+      
  @endsection
