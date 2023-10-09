@@ -24,6 +24,15 @@ Route::get('/', function () {
     return view('homepage');
 });
 
+Route::get('/tentangkami', function () {
+    return view('tentangkami');
+});
+
 Route::get('/isiSurvey', [AnswerController::class, 'isiSurvey']);
+Route::get('/listpegawai', [SurveyController::class, 'listpegawai']);
+Route::get('/dashboard', [AnswerController::class, 'dashboard']);
+Route::get('/', [SurveyController::class, 'index']);
+
+Route::get('/listguest', [SurveyController::class, 'listGuest']);
 Route::get('/', [SurveyController::class, 'index']);
 

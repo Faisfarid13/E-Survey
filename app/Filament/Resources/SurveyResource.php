@@ -64,8 +64,14 @@ class SurveyResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('title')->label('Judul')->sortable()->searchable()->limit(20),
-                Tables\Columns\TextColumn::make('description')->label('Deskripsi')->formatStateUsing(fn (string $state): string => strip_tags($state))->limit(40),
+
+                Tables\Columns\TextColumn::make('title')
+                ->label('Judul')->sortable()->searchable()->limit(15)
+                ->tooltip(fn ($state): string => $state),
+                Tables\Columns\TextColumn::make('description')
+                ->label('Deskripsi')->formatStateUsing(fn (string $state): string => strip_tags($state))->limit(15)
+                ->tooltip(fn ($state): string => $state), 
+
                 Tables\Columns\TextColumn::make('criteria')->label('Kriteria'),
                 TextColumn::make('status')
                 ->action(function($record, $column){

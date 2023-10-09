@@ -19,4 +19,21 @@ class SurveyController extends Controller
             'surveys' => Survey::Where('status', 'SELESAI')->get()
         ]);
     }
+
+    public function listguest(){
+        return view('surveyListGuest', [
+            'surveys' => Survey::Where('criteria', 'umum')
+            ->where('status', 'AKTIF')
+            ->get()
+        ]);
+    }
+
+    public function listpegawai(){
+        return view('surveyList', [
+            'surveys' => Survey::Where('criteria', 'pegawai')
+            ->where('status', 'AKTIF')
+            ->get()
+        ]);
+    }
+
 }
