@@ -21,4 +21,12 @@ class CreateSurvey extends CreateRecord
             ->title('Berhasil!')
             ->body('Anda telah membuat survei baru.');
     }
+
+    protected function mutateFormDataBeforeCreate(array $data): array
+{
+    $data['user_id'] = auth()->id();
+    $data['status'] = 'NON-AKTIF';
+ 
+    return $data;
+}
 }

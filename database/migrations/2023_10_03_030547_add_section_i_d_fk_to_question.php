@@ -12,9 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('questions', function (Blueprint $table) {
-            $table->foreignId('question_category_id')->nullable()->after('survey_id')->constrained();
+            $table->foreignId('section_id')->nullable()->after('id')->constrained();
         });
     }
+
     /**
      * Reverse the migrations.
      */
