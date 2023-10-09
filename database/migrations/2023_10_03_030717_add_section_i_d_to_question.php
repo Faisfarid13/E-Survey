@@ -11,11 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('questions', function (Blueprint $table) {
-            $table->id();
-            // $table->foreignId('section_id')->nullable()->constrained();
-            $table->text('question');
-            $table->timestamps();
+        Schema::table('questions', function (Blueprint $table) {
+            // $table->foreignId('survey_id')->nullable()->after('id')->constrained();
+            $table->foreignId('question_category_id')->nullable()->after('section_id')->constrained();
         });
     }
 
@@ -24,6 +22,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('questions');
+        Schema::table('questions', function (Blueprint $table) {
+            //
+        });
     }
 };

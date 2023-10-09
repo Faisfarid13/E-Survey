@@ -34,8 +34,9 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->login(Login::class)
+            ->brandName('e-survey')
             ->colors([
-                'primary' => '#137C13',
+                'primary' => '#137C13',          
             ])
             ->font('Poppins')
             ->brandName('e-survey')
