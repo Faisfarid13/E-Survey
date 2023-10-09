@@ -20,6 +20,7 @@ use Filament\Http\Middleware\DispatchServingFilamentEvent;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use App\Filament\Pages\Auth\EditProfile as AuthEditProfile;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
+use App\Filament\Pages\Auth\Login;
 use App\Filament\Resources\NoResource\Pages\Profile as PagesProfile;
 
 class AdminPanelProvider extends PanelProvider
