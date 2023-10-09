@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Infolists;
 use Filament\Infolists\Infolist;
 use Filament\Infolists\Components\Section;
-
+use Filament\Tables\Columns\TextColumn;
 
 class SurveyResource extends Resource
 {
@@ -67,7 +67,32 @@ class SurveyResource extends Resource
                 Tables\Columns\TextColumn::make('title')->label('Judul')->sortable()->searchable()->limit(20),
                 Tables\Columns\TextColumn::make('description')->label('Deskripsi')->formatStateUsing(fn (string $state): string => strip_tags($state))->limit(40),
                 Tables\Columns\TextColumn::make('criteria')->label('Kriteria'),
-                Tables\Columns\TextColumn::make('status')->label('Status'),
+                TextColumn::make('status')
+                ->action(function($record, $column){
+                    $name = $column->getName();
+                    if ($record->tanggal_selesai < now()) {
+                        $record->update([
+                            'status' => 'selesai',
+                        ]);
+                    }
+                }),
+                Tables\Columns\BooleanColumn::make('is_active')
+                ->action(function($record, $column){
+                    $name = $column->getName();
+                    if ($record->$name == 0) {
+                        $record->update([
+                            $name => !$record->$name,
+                            'status' => 'aktif',
+                        ]);
+                    }
+                    else {
+                        $record->update([
+                            $name => !$record->$name,
+                            'status' => 'non-aktif',
+                        ]);
+                    }
+                    return $record->$name ? 'aktif' : 'non-aktif';
+                }),
                 Tables\Columns\TextColumn::make('tanggal_mulai')->label('Tanggal Mulai')->sortable(),
                 Tables\Columns\TextColumn::make('tanggal_selesai')->label('Tanggal Selesai'),
             ])

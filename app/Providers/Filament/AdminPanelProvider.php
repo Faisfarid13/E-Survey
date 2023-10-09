@@ -2,30 +2,32 @@
 
 namespace App\Providers\Filament;
 
-use App\Filament\Pages\Auth\EditProfile as AuthEditProfile;
-use App\Filament\Resources\NoResource\Pages\Profile as PagesProfile;
 use Filament\Pages;
 use Filament\Panel;
 use Filament\Widgets;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
+use Filament\Pages\Auth\EditProfile;
 use Filament\Http\Middleware\Authenticate;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\Cookie\Middleware\EncryptCookies;
+use BezhanSalleh\FilamentShield\FilamentShieldPlugin;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
-use Filament\Pages\Auth\EditProfile;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
+use App\Filament\Pages\Auth\EditProfile as AuthEditProfile;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
+use App\Filament\Resources\NoResource\Pages\Profile as PagesProfile;
 
 class AdminPanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
     {
         return $panel
+            
             ->default()
             ->sidebarCollapsibleOnDesktop(true)
             ->id('admin')
@@ -56,6 +58,9 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->profile(AuthEditProfile::class)
             ->authGuard('web')
+            ->plugins([
+                FilamentShieldPlugin::make()
+            ])
             ->authMiddleware([
                 Authenticate::class,
             ]);
