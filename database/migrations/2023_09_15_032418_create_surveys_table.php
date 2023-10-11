@@ -21,7 +21,6 @@ return new class extends Migration
             $table->date('tanggal_mulai');
             $table->date('tanggal_selesai');
             $table->timestamps();
-            $table->timestamps();
         });
     }
     /**
