@@ -1,32 +1,29 @@
 <?php
 
-namespace App\Filament\Resources;
+// namespace App\Filament\Resources;
 
-use App\Filament\Resources\QuestionCategoryResource\Pages;
-use App\Models\QuestionCategory;
+use App\Filament\Resources\SectionResource\Pages;
+use App\Filament\Resources\SectionResource\RelationManagers;
+use App\Models\Section;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Filament\Forms\Components\Card;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class QuestionCategoryResource extends Resource
+class SectionResource extends Resource
 {
-    protected static ?string $model = QuestionCategory::class;
-    protected static ?int $navigationSort = 2;
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $model = Section::class;
+
+    protected static ?string $navigationIcon = 'heroicon-o-view-columns';
+
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Card::make()->schema([
-                    Forms\Components\TextInput::make('type')
-                    ->label('Jenis Pertanyaan')
-                    ->minLength(5)
-                    ->maxLength(50)
-                    ->required(),
-                    ]),
+                //
             ]);
     }
 
@@ -34,7 +31,7 @@ class QuestionCategoryResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('type')->label('Jenis Pertanyaan')->sortable()->searchable(),
+                //
             ])
             ->filters([
                 //
@@ -53,7 +50,7 @@ class QuestionCategoryResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ManageQuestionCategories::route('/'),
+            'index' => Pages\ManageSections::route('/'),
         ];
     }    
 }

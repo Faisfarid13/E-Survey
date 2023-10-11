@@ -11,12 +11,12 @@ use Filament\Resources\Resource;
 use Filament\Forms\Components\Card;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Infolists;
 use Filament\Infolists\Infolist;
 use Filament\Infolists\Components\Section;
 use Filament\Tables\Columns\TextColumn;
+
+use Filament\Tables\Actions\Action;
 
 
 class SurveyResource extends Resource
@@ -24,6 +24,7 @@ class SurveyResource extends Resource
     protected static ?string $model = Survey::class;
     protected static ?int $navigationSort = 1;
     protected static ?string $navigationIcon = 'heroicon-o-document';
+    
 
     public static function form(Form $form): Form
     {
@@ -46,18 +47,26 @@ class SurveyResource extends Resource
                     'umum' => 'UMUM',
                 ])
                 ->required(),
-                Forms\Components\Select::make('status')
-                ->label('Status')
-                ->options([
-                    'AKTIF' => 'AKTIF',
-                    'NON-AKTIF' => 'NON-AKTIF',
-                    'SELESAI' => 'SELESAI',
-                ])
-                ->required(),
+
+                // Forms\Components\Select::make('status')
+                // ->label('Status')
+                // ->hidden()
+                // ->options([
+                //     'AKTIF' => 'AKTIF',
+                //     'NON-AKTIF' => 'NON-AKTIF',
+                //     'SELESAI' => 'SELESAI',
+                // ])
+                // ->saveRelationshipsBeforeChildrenUsing(function (array $data): array {
+                //     $data['status'] = 'NON-AKTIF';
+             
+                //     return $data;
+                // }),
                 Forms\Components\DatePicker::make('tanggal_mulai')
-                ->required(),
+                ->required()
+                ->minDate(now()),
                 Forms\Components\DatePicker::make('tanggal_selesai')
-                ->required(),
+                ->required()
+                ->afterOrEqual('tanggal_mulai'),
                 ]),
             ]);
     }
@@ -120,6 +129,7 @@ class SurveyResource extends Resource
     public static function getRelations(): array
     {
         return [
+            RelationManagers\SectionRelationManager::class,
             RelationManagers\QuestionsRelationManager::class,
         ];
     }
@@ -156,7 +166,9 @@ class SurveyResource extends Resource
                         Infolists\Components\TextEntry::make('tanggal_mulai')->dateTime('d F Y'),
                         Infolists\Components\TextEntry::make('tanggal_selesai')->dateTime('d F Y'),
                     ])->columns(2)
+                    
                 ]),
+                
             ]);
     }
 }

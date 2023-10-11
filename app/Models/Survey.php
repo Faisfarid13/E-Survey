@@ -19,6 +19,11 @@ class Survey extends Model
     protected $guarded = [
         'id'
     ];
+    public function section(): HasMany
+    {
+        return $this->hasMany(Section::class);
+    }
+
     public function questions(): HasMany
     {
         return $this->hasMany(Question::class);

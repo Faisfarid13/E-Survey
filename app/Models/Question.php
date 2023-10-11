@@ -19,6 +19,10 @@ class Question extends Model
     {
         return $this->belongsTo(Survey::class);
     }
+    public function section()
+    {
+        return $this->belongsTo(Section::class);
+    }
     public function choice()
     {
         return $this->hasMany(Choice::class);
