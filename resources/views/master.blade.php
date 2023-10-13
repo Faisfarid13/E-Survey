@@ -15,14 +15,19 @@
 
 <body>
 <!-- Navbar -->
-<nav class="bg-white p-2 border-2 shadow-xl rounded-b-3xl">
+<nav class="bg-white p-3 border-2 shadow-xl rounded-b-3xl">
     <div class="container mx-auto flex justify-between items-center">
         <!-- Logo -->
-        <div class="flex items-center bg-cover bg-center w-48 h-16" style="background-image: url({{ asset('/asset/logodkv.png') }})">
-            </div>
+        <div class="flex items-center space-x-2">
+            <img src="{{ asset('/asset/logokemenag.png') }}" alt="Logo" class="w-12 h-12">
+            <h1 class="text-[#266C3E] text-xs font-bold">
+                Badan Litbang dan Diklat <br> 
+                Kementerian Agama RI
+            </h1>
+        </div>
 
         <!-- Menu untuk Desktop -->
-        <ul class="hidden md:flex lg:flex space-x-20 text-[#266C3E] text-lg font-semibold items-center" style="font-family: 'Poppins';">
+        <ul class="hidden md:flex lg:flex space-x-6 text-[#266C3E] text-lg font-semibold items-center" style="font-family: 'Poppins';">
             <li class="nav-item">
                 <a class="nav-link hover:text-gray-200" href="/">Beranda</a>
             </li>
@@ -33,7 +38,7 @@
                 <a class="nav-link hover:text-gray-200" href="../tentangkami">Tentang Kami</a>
             </li>
             <li class="nav-item">
-                <button type="button" class="btn btn-light bg-white text-[#266C3E] font-3xl rounded-lg border-2 shadow-lg font-semibold w-32 h-12"><a href="../admin/login">Masuk</a></button>
+                <button type="button" class="btn btn-light bg-white text-[#266C3E] font-3xl rounded-lg border-2 shadow-lg font-semibold w-28 h-10"><a href="../admin/login">Masuk</a></button>
             </li>
         </ul>
         
@@ -71,27 +76,27 @@
 
 @yield('content')
 
-<footer id="footer" class="bg-[#266C3E]" style="font-family: Poppins;">
+<footer id="footer" class="bg-[#C1DECC]" style="font-family: Poppins;">
     <div class="relative">
         <div class=""> <!--gelombang joget image-->
-            <img class="" src="{{ asset('/asset/abstract1.png') }}" alt="">
+            <img class="" src="{{ asset('/asset/abstractbaru.svg') }}" alt="">
         </div>
         <div class="mx-auto w-full max-w-screen-xl p-4 py-1 md:py-6 lg:py-8">
             <div class="md:mt-12 mt-8 md:flex md:justify-between">
                 <div class="mr-4 md:mb-0">
-                    <img src="{{ asset('/asset/logo.svg') }}" class="w-[86px] h-[82px]"/>
+                    <img src="{{ asset('/asset/logokemenag.png') }}" class="w-[86px] h-[82px]"/>
                     <div class="flex my-4">
                         <a href="#"> <iconify-icon class="mr-3" icon="iconoir:youtube" style="color: white;" width="35"></iconify-icon> </a>
                         <a href="#"> <iconify-icon icon="iconoir:instagram" style="color: white;" width="35"></iconify-icon> </a>
                     </div>
                 </div>
                 <div class="my-2">
-                    <p class="text-left text-base font-semibold text-white">Badan Moderasi Beragama dan PSDM <br> Kementrian Agama <br> Republik Indonesia </p>
+                    <p class="text-left text-base font-semibold text-[#266C3E]">Badan Moderasi Beragama dan PSDM <br> Kementrian Agama <br> Republik Indonesia </p>
                 </div>
                 <div class="md:grid md:grid-cols-2">
                     <div class="mb-6 md:mx-20">
-                        <h2 class="mb-6 font-bold text-lg text-white">Bantuan</h2>
-                        <ul class="text-white font-normal">
+                        <h2 class="mb-6 font-bold text-lg text-[#266C3E]">Bantuan</h2>
+                        <ul class="text-[#266C3E] font-normal">
                             <li>
                                 <a href="https://mail.google.com/mail/?view=cm&to=sisiinfobalitbangdiklat@kemenag.go.id&su=Subjek%20Email&body=Isi%20Pesan" class="hover:underline ">sisiinfobalitbangdiklat@kemenag.go.id</a>
                             </li>
@@ -101,8 +106,8 @@
                         </ul>
                     </div>
                     <div>
-                        <h2 class="mb-6 font-bold text-lg text-white">Alamat</h2>
-                        <ul class="text-white font-normal">
+                        <h2 class="mb-6 font-bold text-lg text-[#266C3E]">Alamat</h2>
+                        <ul class="text-[#266C3E] font-normal">
                             <li class="mb-4">
                                 <a href="https://maps.app.goo.gl/TU8QFFtQa6CZ8ajK6" class="hover:underline">Gedung Kemeterian Agama RI, Jl. M.H. Thamrin No.6,<br> RT.2/RW.1, Kb. Sirih, Jakarta, Kota Jakarta Pusat,<br> Daerah Khusus Ibukota Jakarta 10340</a>
                             </li>
@@ -112,11 +117,11 @@
             </div>
             <hr class="my-6 border-white sm:mx-auto lg:my-8" />
             <div class="text-center">
-                <p class="text-sm text-center text-white sm:text-center">© 2023 Badan Moderasi Beragama - All Rights Reserved.</p>
+                <p class="text-sm text-center text-[#266C3E] sm:text-center">© 2023 Badan Moderasi Beragama - All Rights Reserved.</p>
             </div>
         </div>
         <div class="absolute bottom-0 right-0">
-            <img src="{{ asset('/asset/abstract2.png') }}" alt="">
+            <img src="{{ asset('/asset/abstractbaru2.svg') }}" alt="">
         </div>
     </div>
 </footer>
