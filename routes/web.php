@@ -22,15 +22,15 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [SurveyController::class, 'index']);
 Route::get('/riwayats', [SurveyController::class, 'riwayat']);
 
-Route::get('/', function () {
-    return view('homepage');
-});
-
-Route::get('/isiSurvey', [AnswerController::class, 'isiSurvey']);
 Route::get('/listpegawai', [SurveyController::class, 'listpegawai']);
-Route::get('/dashboard', [AnswerController::class, 'dashboard']);
-Route::get('/', [SurveyController::class, 'index']);
+Route::get('/formSurvey/{title}', [QuestionController::class, 'formSurvey']);
+Route::post('/formSurvey/{title}/submit', [AnswerController::class, 'submitSurvey']);
 
 Route::get('/listguest', [SurveyController::class, 'listGuest']);
-Route::get('/', [SurveyController::class, 'index']);
+Route::get('/dashboard', [AnswerController::class, 'dashboard']);
+Route::get('/tentangkami', function () {
+    return view('tentangkami');
+});
+
+
 
