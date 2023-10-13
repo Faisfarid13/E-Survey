@@ -11,6 +11,10 @@ class AnswerController extends Controller
         return view('isiSurvey');
     }
 
+    public function detailsurvey(){
+        return view('detailsurvey');
+    }
+
     public function dashboard(){
         $now = date('Y-m-d');
         return view('dashboard', [

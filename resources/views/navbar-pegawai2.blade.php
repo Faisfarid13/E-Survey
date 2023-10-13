@@ -13,10 +13,16 @@
 <body>
 
 <!-- Navbar -->
-<nav class="bg-white p-4 border-2 drop-shadow-2xl rounded-b-3xl" style="font-family: 'Poppins';">
+<nav class="bg-white p-3 border-2 drop-shadow-2xl rounded-b-3xl" style="font-family: 'Poppins';">
         <div class="container mx-auto flex justify-between items-center">
             <!-- Logo -->
-            <div class="flex items-center space-x-2  bg-cover bg-center w-40 h-10" style="background-image: url({{ asset('/asset/logodkv.png') }})">
+            <div class="flex items-center space-x-2">
+                <img src="{{ asset('/asset/logo.svg') }}" alt="Logo" class="w-12 h-12">
+                <h1 class="text-[#266C3E] text-xs font-bold">
+                    E-Survey <br>
+                    Badan Moderasi Beragama dan PDSM <br> 
+                    Kemenag RI
+                </h1>
             </div>
 
         <!-- Menu untuk Desktop -->
@@ -134,7 +140,7 @@
                         <h2 class="mb-6 font-bold text-lg text-white">Bantuan</h2>
                         <ul class="text-white font-normal">
                             <li>
-                                <a href="https://mail.google.com/mail/?view=cm&to=sisiinfobalitbangdiklat@kemenag.go.id&su=Subjek%20Email&body=Isi%20Pesan" class="hover:underline ">sisiinfobalitbangdiklat@kemenag.go.id</a>
+                                <a href="https://mail.google.com/mail/?view=cm&to=sisiinfobalitbangdiklat@kemenag.go.id&su=Subjek%20Email&body=Isi%20Pesan" class="hover:underline">sisiinfobalitbangdiklat@kemenag.go.id</a>
                             </li>
                             <li>
                                 <a>(021) 7404185</a>
