@@ -12,6 +12,10 @@ use Illuminate\Http\RedirectResponse;
 
 class AnswerController extends Controller
 {
+    public function detailsurvey(){
+        return view('detailsurvey');
+    }
+    
     public function submitSurvey(Request $request, $surveyTitle)
     {
         $survey = Survey::where('title', $surveyTitle)->first();
