@@ -14,8 +14,12 @@ use Filament\Forms\Components\Card;
 class QuestionCategoryResource extends Resource
 {
     protected static ?string $model = QuestionCategory::class;
-    protected static ?int $navigationSort = 2;
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?int $navigationSort = -7;
+    protected static ?string $navigationGroup = 'Kelola Survey';
+    protected static ?string $recordTitleAttribute = 'type';
+    protected static ?string $navigationLabel = 'Pertanyaan Survey';
+    protected static ?string $modelLabel = 'Pertanyaan Survey';
+    protected static ?string $navigationIcon = 'heroicon-o-clipboard-document-check';
     public static function form(Form $form): Form
     {
         return $form
@@ -49,11 +53,11 @@ class QuestionCategoryResource extends Resource
                 ]),
             ]);
     }
-    
+
     public static function getPages(): array
     {
         return [
             'index' => Pages\ManageQuestionCategories::route('/'),
         ];
-    }    
+    }
 }

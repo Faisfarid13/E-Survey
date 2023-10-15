@@ -3,7 +3,7 @@
  <div class="bg-[#C1DECC] pt-10 text-white rounded-b-3xl bg-cover bg-center drop-shadow-lg" style="background-image: url({{ asset('/asset/elemen4.png') }})">
   <div class="w-4/5 mx-auto">
     <div class="">
-      <img src="{{ asset('/asset/logodkvbener.png') }}">
+      <img src="{{ asset('asset/logodkvbener.png') }}">
     </div>
     {{-- <img class="bg-white rounded-full h-18 p-4 opacity-60" src="{{ asset('/asset/logodkvbener.png') }}"> --}}
     {{-- <div class="h-full w-40 border-2 " style="background-image: url({{ asset('/asset/logodkv.png') }})"></div> --}}
@@ -82,5 +82,5 @@
           window.location.href = newPageUrl;
       }
       </script>
-      
+
  @endsection

@@ -1,10 +1,7 @@
 <?php
-use App\Models\Survey;
 use App\Http\Controllers\SurveyController;
 use App\Http\Controllers\AnswerController;
-use App\Models\Answer;
 use Illuminate\Support\Facades\Route;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -17,25 +14,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
-Route::get('/', [SurveyController::class, 'index']);
+Route::get('/', [SurveyController::class, 'index'])->name('home');
 Route::get('/riwayats', [SurveyController::class, 'riwayat']);
-
-Route::get('/', function () {
-    return view('homepage');
-});
+//Route::get('form/{Event:slug}', \App\Livewire\EventResponsePost::class);
+Route::get('form/{event:slug}', [\App\Http\Controllers\EventResponseController::class, 'index'])
+        ->name('event.form');
+Route::get('form/{eventResponse:uuid}/result', [\App\Http\Controllers\EventResponseController::class, 'success'])
+    ->name('event.success');
+//Route::get('/', function () {
+//    return view('homepage');
+//})->name('home');
 
 Route::get('/tentangkami', function () {
-    return view('tentangkamif');
+    return view('tentangkami');
 });
 
 Route::get('/detailsurvey', [AnswerController::class, 'detailsurvey']);
 Route::get('/listpegawai', [SurveyController::class, 'listpegawai']);
 Route::get('/dashboard', [AnswerController::class, 'dashboard']);
-Route::get('/', [SurveyController::class, 'index']);
-
 Route::get('/listguest', [SurveyController::class, 'listGuest']);
-Route::get('/', [SurveyController::class, 'index']);
-
-// /detailsurvey/{id}
-
