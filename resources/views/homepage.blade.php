@@ -45,7 +45,8 @@
     <!-- Akhir Survei-->
     <!-- Card -->
     @foreach ($surveys->take(4) as $item)
-    <div class="w-4/5 mx-auto p-4 rounded-xl hover:shadow-lg bg-[#F5C577] mb-2 drop-shadow-lg" onclick="isisurvey()">
+    <a href="/formSurvey/{{$item->title}}">
+    <div class="border w-4/5 mx-auto p-3 rounded-lg hover:shadow-lg bg-[#F5C577] mb-5" >
       <p style="font-family: Poppins; font-weight:600;" class="text-[0.875rem] md:text-[1rem]">{{$item->title}}</p>
       <p style="font-family: Poppins; font-weight:400" class="py-1 px-4 text-[0.6875rem] md:text-[0.875rem]">{!! $item->description !!}</p>
       <table>
@@ -61,6 +62,7 @@
           </tbody>
       </table>
   </div>
+</a>
   @endforeach
     <!-- Akhir Card -->
     <div class="flex items-center justify-center my-4">

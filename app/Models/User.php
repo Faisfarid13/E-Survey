@@ -48,6 +48,9 @@ class User extends Authenticatable
     // public function canAccessPanel(Panel $panel): bool
     // {
     //     return $this->hasRole(['Admin', 'Pegawai']);
-        
-    // }
+
+    public function answers()
+    {
+     return $this->belongsTo(Answer::class);
+    }
 }

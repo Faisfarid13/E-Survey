@@ -55,7 +55,7 @@
         <script>
             function isisurvey() {
                 // Ganti URL di bawah ini dengan URL halaman yang ingin Anda tuju
-                var newPageUrl = '/isiSurvey';
+                var newPageUrl = '/formSurvey/{{$data->title}}';
             
                 // Mengarahkan browser ke halaman baru
                 window.location.href = newPageUrl;
