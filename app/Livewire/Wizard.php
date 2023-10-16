@@ -1,12 +1,17 @@
 <?php
 
 namespace App\Livewire;
+
 use App\Models\Section;
+use App\Models\Question;
+use App\Models\Survey;
 use Livewire\Component;
 
 class Wizard extends Component
 {
     public $sections;
+    public $jumlahSection;
+    public $surveys;
     public $currentSection = 0;
     public function mount()
     {
@@ -14,7 +19,11 @@ class Wizard extends Component
     }
     public function render()
     {
-        return view('livewire.wizard');
+        $sections = Section::all();
+        $jumlahSection = Section::count();
+        $questions = Question::all();
+        $surveys = Survey::where();
+        return view('livewire.wizard', compact('sections', 'questions', 'surveys', 'jumlahSection'));
     }
     public function nextSection()
     {
@@ -34,4 +43,5 @@ class Wizard extends Component
     {
         // Logika pemrosesan data pada saat tombol "Submit" ditekan
     }
+
 }

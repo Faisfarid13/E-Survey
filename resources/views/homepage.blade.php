@@ -45,6 +45,7 @@
     <!-- Akhir Survei-->
     <!-- Card -->
     @foreach ($surveys->take(4) as $item)
+    {{-- /formSurvey/{{$item->title}}  {{ route('survey.form', ['id' => $item->id]) }} --}}
     <a href="/formSurvey/{{$item->title}}">
     <div class="border w-4/5 mx-auto p-3 rounded-lg hover:shadow-lg bg-[#F5C577] mb-5" >
       <p style="font-family: Poppins; font-weight:600;" class="text-[0.875rem] md:text-[1rem]">{{$item->title}}</p>

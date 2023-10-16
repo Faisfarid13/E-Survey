@@ -3,6 +3,7 @@ use App\Models\Survey;
 use App\Http\Controllers\SurveyController;
 use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\QuestionController;
+use App\Http\Livewire\FormSurveyWizard;
 use App\Models\Answer;
 use App\Models\Question;
 use Illuminate\Support\Facades\Route;
@@ -35,3 +36,5 @@ Route::get('/tentangkami', function () {
 Route::get('/detailsurvey', [AnswerController::class, 'detailsurvey']);
 // /detailsurvey/{id}
 
+Route::get('/testFormSurvey/{id}', [QuestionController::class, 'testFormSurvey'])->name('survey.form');
+// Route::get('/survey/{surveyId}', FormSurveyWizard::class)->name('survey.form');
