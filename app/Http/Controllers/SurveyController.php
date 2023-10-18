@@ -12,7 +12,12 @@ class SurveyController extends Controller
             'surveys' => Survey::all()
         ]);
     }
-
+    public function dashboard(){
+        $now = date('Y-m-d');
+        return view('dashboard', [
+            'datas' => Survey::Where('tanggal_selesai', '>=', $now)->get()
+        ]);
+    }
 
     public function riwayat(){
         return view('riwayatSurvey', [

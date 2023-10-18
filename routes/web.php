@@ -28,7 +28,7 @@ Route::get('/formSurvey/{title}', [QuestionController::class, 'formSurvey']);
 Route::post('/formSurvey/{title}/submit', [AnswerController::class, 'submitSurvey']);
 
 Route::get('/listguest', [SurveyController::class, 'listGuest']);
-Route::get('/dashboard', [AnswerController::class, 'dashboard']);
+Route::get('/dashboard', [SurveyController::class, 'dashboard']);
 Route::get('/tentangkami', function () {
     return view('tentangkamif');
 });
