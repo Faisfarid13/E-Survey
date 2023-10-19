@@ -11,4 +11,18 @@ class Answer extends Model
     protected $guarded = [
         'id'
     ];
+
+    public function choice()
+    {
+     return $this->belongsTo(choice::class);
+    }
+    public function user()
+    {
+     return $this->belongsTo(user::class);
+    }
+
+    public function question()
+    {
+     return $this->belongsTo(Question::class);
+    }
 }

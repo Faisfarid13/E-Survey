@@ -45,6 +45,11 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+    public function answer()
+    {
+     return $this->hasMany(Answer::class);
+    }
+
     // public function canAccessPanel(Panel $panel): bool
     // {
     //     return $this->hasRole(['Admin', 'Pegawai']);
