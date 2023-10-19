@@ -12,9 +12,11 @@ class Choice extends Model
     {
      return $this->belongsTo(Question::class);
     }
-    public function answers()
+
+    public function answer()
     {
-     return $this->belongsTo(Answer::class);
+     return $this->hasMany(Answer::class);
     }
+
     
 }
