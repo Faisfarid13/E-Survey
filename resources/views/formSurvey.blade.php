@@ -7,8 +7,20 @@
     <form action="{{ url('formSurvey/'.$surveys->title.'/submit') }}" method="post">
         <div class="m-8 p-2 border-solid border-2 border-grey rounded">
             <h1 class="text-2xl font-bold">{{$surveys->title}}</h1>
-            {!!$surveys->description!!}
+            <div>
+                {!!$surveys->description!!}
+            </div>
             <hr class="my-6 border-grey border-solid" />
+
+            <div class="section-list flex justify-center">
+                @foreach ($sections as $sectionIndex => $section)
+                <div class="flex mx-4 border-solid border-2 rounded-full shadow-xl">
+                    <span class="section-number py-2 px-4 mr-2 text-white font-bold border-solid border-2 rounded-full" data-section="{{ $sectionIndex }}">{{ $sectionIndex + 1 }}</span>
+                    <p class="font-bold py-2 px-4 mr-4">{{$section->section}}</p>
+                </div>
+                @endforeach
+            </div>
+
             @csrf
                 @if ($errors->any())
                     <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:text-red-400" role="alert">
@@ -78,13 +90,19 @@
                             </select> --}}
                 </div>
                 @endforeach
+                <div class="flex justify-end">
+                    @if($sectionIndex === count($sections)-1)
+                    <button type="button" class="mx-4 bg-rose-500 hover:bg-rose-700 text-white font-bold py-2 px-4 rounded prevButton">Back</button>
+                    <button type="submit" class="mx-4 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" style="{{ $sectionIndex === count($sections) - 1 ? '' : 'display: none;' }}">Submit</button>
+                    @elseif ($sectionIndex === 0)
+                    <button type="button" class="mx-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded nextButton">Next</button>
+                    @else
+                    <button type="button" class="mx-4 bg-rose-500 hover:bg-rose-700 text-white font-bold py-2 px-4 rounded prevButton">Back</button>
+                    <button type="button" class="mx-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded nextButton">Next</button>
+                    @endif
+                </div>
             </div>
             @endforeach
-            <div class="navigation-buttons flex justify-end">
-                <button type="button" class="mx-4 bg-rose-500 hover:bg-rose-700 text-white font-bold py-2 px-4 rounded" id="prevButton">Back</button>
-                <button type="button" class="mx-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" id="nextButton">Next</button>
-                <button type="submit" class="mx-4 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" style="{{ $sectionIndex === count($sections) - 1 ? '' : 'display: none;' }}">Submit</button>
-            </div>
             {{-- <input type="submit" value="Submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"> --}}
         </div>
     </form>
@@ -92,10 +110,25 @@
     <script>
         let currentSection = 0;
         const sections = document.querySelectorAll('.survey-section');
+        const nextButton = document.querySelectorAll('.nextButton');
+        const prevButton = document.querySelectorAll('.prevButton');
+        const submitButton = document.querySelector('.submitButton');
 
         function showSection(sectionIndex) {
             sections.forEach((section, index) => {
                 section.style.display = index === sectionIndex ? 'block' : 'none';
+            });
+
+            // Mengubah warna teks berdasarkan nomor section
+            const sectionNumbers = document.querySelectorAll('.section-number');
+            sectionNumbers.forEach((number, index) => {
+                if (index <= sectionIndex) {
+                    number.style.backgroundColor = 'green';
+                    number.style.color = 'white';
+                } else {
+                    number.style.backgroundColor = 'red';
+                    number.style.color = 'white';
+                }
             });
         }
 
@@ -104,7 +137,6 @@
             if (currentSection < sections.length - 1) {
                 currentSection++;
                 showSection(currentSection);
-                console.log('Next Section:', currentSection);
             }
         }
 
@@ -112,23 +144,28 @@
             if (currentSection > 0) {
                 currentSection--;
                 showSection(currentSection);
-                console.log('Previous Section:', currentSection);
             }
         }
 
-        // Panggil fungsi untuk menampilkan section saat halaman dimuat
-        document.addEventListener('DOMContentLoaded', function () {
-            showSection(currentSection);
+        // Initial setup
+        showSection(currentSection);
 
-        // Tambahkan event listener untuk tombol Next dan Back
-        document.querySelector('#nextButton').addEventListener('click', function () {
-            nextSection();
+        // Add event listeners
+        nextButton.forEach(button => {
+            button.addEventListener('click', () => {
+                nextSection();
+            });
         });
 
-        document.querySelector('#prevButton').addEventListener('click', function () {
-            prevSection();
+        prevButton.forEach(button => {
+            button.addEventListener('click', () => {
+                prevSection();
+            });
         });
-    });
+
+        submitButton.addEventListener('click', () => {
+            // Handle form submission here if needed
+        });
     </script>
 </body>
 @endsection
