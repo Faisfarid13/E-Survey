@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources;
+// namespace App\Filament\Resources;
 
 use App\Filament\Resources\QuestionResource\Pages;
 use App\Filament\Resources\QuestionResource\RelationManagers;
@@ -17,9 +17,8 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 class QuestionResource extends Resource
 {
     protected static ?string $model = Question::class;
-
     protected static ?string $navigationIcon = 'heroicon-o-folder';
-
+    protected static bool $shouldRegisterNavigation = false;
     public static function form(Form $form): Form
     {
         return $form
@@ -56,7 +55,7 @@ class QuestionResource extends Resource
                 ]),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
@@ -70,5 +69,5 @@ class QuestionResource extends Resource
             'create' => Pages\CreateQuestion::route('/create'),
             'edit' => Pages\EditQuestion::route('/{record}/edit'),
         ];
-    }    
+    }
 }

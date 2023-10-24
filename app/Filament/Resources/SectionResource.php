@@ -1,6 +1,5 @@
 <?php
-
-// namespace App\Filament\Resources;
+namespace App\Filament\Resources;
 
 use App\Filament\Resources\SectionResource\Pages;
 use App\Filament\Resources\SectionResource\RelationManagers;
@@ -16,9 +15,8 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 class SectionResource extends Resource
 {
     protected static ?string $model = Section::class;
-
     protected static ?string $navigationIcon = 'heroicon-o-view-columns';
-
+    protected static bool $shouldRegisterNavigation = false;
     public static function form(Form $form): Form
     {
         return $form
@@ -46,11 +44,11 @@ class SectionResource extends Resource
                 ]),
             ]);
     }
-    
+
     public static function getPages(): array
     {
         return [
             'index' => Pages\ManageSections::route('/'),
         ];
-    }    
+    }
 }

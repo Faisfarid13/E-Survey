@@ -44,6 +44,30 @@ return [
             'throw' => false,
         ],
 
+        'profile-photos' => [
+            'driver' => 'local',
+            'root' => storage_path('app/images/profile-photos'),
+            'url' => env('APP_URL').'/profile-photos',
+            'visibility' => 'private',
+            'throw' => false,
+        ],
+
+        'images' => [
+            'driver' => 'local',
+            'root' => storage_path('app/images'),
+            'url' => env('APP_URL').'/images',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
+
+        'documents' => [
+            'driver' => 'local',
+            'root' => storage_path('app/documents'),
+            'url' => env('APP_URL').'/documents',
+            'visibility' => 'private',
+            'throw' => false,
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),
@@ -71,6 +95,9 @@ return [
 
     'links' => [
         public_path('storage') => storage_path('app/public'),
+        public_path('documents') => storage_path('app/documents'),
+        public_path('images') => storage_path('app/images'),
+        public_path('profile-photos') => storage_path('app/images/profile-photos'),
     ],
 
 ];

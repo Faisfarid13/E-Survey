@@ -20,13 +20,6 @@ class QuestionsRelationManager extends RelationManager
 
     public function form(Form $form): Form
     {
-        // $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http';
-        // $host = $_SERVER['HTTP_HOST'];
-        // $uri = $_SERVER['REQUEST_URI'];
-        
-        // $currentUrl = $protocol . '://' . $host . $uri;
-        // dd($currentUrl);
-        // $id = end(explode('/', parse_url($currentUrl, PHP_URL_PATH)));
         return $form
             ->schema([
                 Forms\Components\TextInput::make('question')
@@ -52,7 +45,7 @@ class QuestionsRelationManager extends RelationManager
                     Grid::make(1)
                     ->schema(fn (Get $get): array => match ($get('question_category_id'))
                     {
-                        '4', '5'=> [
+                        '4', '5','6','7'=> [
                             Forms\Components\Repeater::make('choice')
                             ->relationship()
                              ->visibleOn('create')
@@ -130,6 +123,8 @@ class QuestionsRelationManager extends RelationManager
         return $table
             ->recordTitleAttribute('question')
             ->columns([
+                Tables\Columns\TextColumn::make('section.section')
+                    ->label('Section'),
                 Tables\Columns\TextColumn::make('question')
                     ->label('Pertanyaan'),
                 Tables\Columns\TextColumn::make('question_category.type')

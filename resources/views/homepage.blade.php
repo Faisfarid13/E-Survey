@@ -36,7 +36,8 @@
       <!-- Akhir Survei-->
       <!-- Card -->
       @foreach ($surveys->take(4) as $item)
-      <div class="w-4/5 mx-auto p-4 rounded-xl hover:shadow-lg bg-white mb-2 drop-shadow-lg" onclick="isisurvey()">
+      <a href="/formSurvey/{{$item->title}}">
+      <div class="w-4/5 mx-auto p-4 rounded-xl hover:shadow-lg bg-white mb-2 drop-shadow-lg">
         <p style="font-family: Poppins; font-weight:600;" class="text-[0.875rem] md:text-[1rem]">{{$item->title}}</p>
         <p style="font-family: Poppins; font-weight:400" class="py-1 px-4 text-[0.6875rem] md:text-[0.875rem] ">{!! Str::limit($item->description, 50, '...') !!}</p>
         <table>
@@ -53,6 +54,7 @@
         </table>
     </div>
     @endforeach
+  </a>
       <!-- Akhir Card -->
       <div class="flex items-center justify-center mt-4">
         <button type="button" onclick="list()" class="btn btn-light drop-shadow-lg focus:outline-none hover:shadow-md text-grey-800 bg-[#F5C577] hover:bg-[#F5C577] focus:ring-2 focus:ring-yellow-300 font-bold rounded-lg p-2 text-md px-5 py-2.5 mr-2 mb-2 mt-5 w-64 h-12 dark:focus:ring-yellow-900">Survei lebih lanjut</button>
@@ -76,5 +78,5 @@
           window.location.href = newPageUrl;
       }
       </script>
-      
+
  @endsection
