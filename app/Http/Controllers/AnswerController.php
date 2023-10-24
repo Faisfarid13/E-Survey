@@ -42,6 +42,7 @@ class AnswerController extends Controller
                 if ($question->question_category_id === 4 ||  $question->question_category_id === 5 ||  $question->question_category_id === 6 ||  $question->question_category_id === 7) {
                     Answer::create([
                         'user_id' => auth()->user() ? auth()->user()->id : null,
+                        'question_id' => $questionId,
                         'choice_id' => $answer,
                         'answer' => Choice::findOrFail($answer)->pilihan_pertanyaan,
                     ]);}
