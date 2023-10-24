@@ -39,7 +39,7 @@ class AnswerController extends Controller
                 return redirect()->back()->withInput()->withErrors($validator);
             }
             else {
-                if ($question->question_category_id === 4 ||  $question->question_category_id === 5) {
+                if ($question->question_category_id === 4 ||  $question->question_category_id === 5 ||  $question->question_category_id === 6 ||  $question->question_category_id === 7) {
                     Answer::create([
                         'user_id' => auth()->user() ? auth()->user()->id : null,
                         'choice_id' => $answer,

@@ -57,19 +57,6 @@
                         @elseif($question->question_category_id === 3)
                         <input type='email' name="answers[{{ $question->id }}]" placeholder="Email" class="peer w-max border-b border-blue-gray-200 bg-transparent pt-4 pb-1.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border-blue-gray-200 focus:border-pink-500 focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50">
 
-                        @elseif($question->question_category_id === 6)
-                        <input type='date' name="answers[{{ $question->id }}]" class="peer w-max border-b border-blue-gray-200 bg-transparent pt-4 pb-1.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border-blue-gray-200 focus:border-pink-500 focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50">
-                        
-                        {{-- @elseif($question->question_category_id === 4)
-                        <input type="range" name="answers[{{ $question->id }}]" id="" min="1" max="10" step="1"> --}}
-
-                        @elseif($question->question_category_id === 5)
-                            @foreach ($question->choice as $choice)
-                            <div class="choice">
-                                <input type="radio" name="answers[{{ $question->id }}]" value="{{ $choice->id }}">
-                                {{ $choice->pilihan_pertanyaan }}
-                            </div>
-                            @endforeach
                         @elseif($question->question_category_id === 4)
                         <div class="flex">
                             @foreach ($question->choice as $choice)
@@ -79,6 +66,37 @@
                             </div>
                             @endforeach
                         </div>
+    
+                        @elseif($question->question_category_id === 5)
+                            @foreach ($question->choice as $choice)
+                            <div class="choice">
+                                <input type="radio" name="answers[{{ $question->id }}]" value="{{ $choice->id }}">
+                                {{ $choice->pilihan_pertanyaan }}
+                            </div>
+                            @endforeach
+                        
+
+                        @elseif($question->question_category_id === 6)
+                        <select name="answers[{{ $question->id }}]" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                            <option value="" disabled selected>Pilih Jawaban yang sesuai</option>
+                            @foreach($question->choice as $choice) 
+                                <option value="{{ $choice->id }}"><h1>{{ $choice->pilihan_pertanyaan }}</h1></option>
+                            @endforeach    
+                        </select>
+
+                        @elseif($question->question_category_id === 7)
+                        @foreach ($question->choice as $choice)
+                            <div class="choice">
+                                <input type="checkbox" name="answers[{{ $question->id }}]" value="{{ $choice->id }}">
+                                {{ $choice->pilihan_pertanyaan }}
+                            </div>
+                        @endforeach
+                        
+                        @elseif($question->question_category_id === 8)
+                        <input type="date" name="answers[{{ $question->id }}]">
+
+                        @elseif($question->question_category_id === 9)
+                        <input type="time" name="answers[{{ $question->id }}]">
                         @endif
                     </div>
                         
