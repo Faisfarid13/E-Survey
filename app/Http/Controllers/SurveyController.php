@@ -36,4 +36,12 @@ class SurveyController extends Controller
         ]);
     }
 
+    public function isisurvey(){
+        return view('isiSurvey', [
+            'surveys' => Survey::Where('criteria', 'pegawai')
+            ->where('status', 'AKTIF')
+            ->get()
+        ]);
+    }
+
 }

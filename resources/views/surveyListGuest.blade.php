@@ -52,7 +52,7 @@
             <tr>
                 <td>   
                     <a href="/isiSurvey">   
-                    <div class="border w-full mx-auto p-3 rounded-lg hover:shadow-lg hover:bg-white bg-[#CADAC5]">
+                    <div class="border w-full mx-auto p-3 rounded-lg hover:shadow-lg hover:bg-white bg-[#C7E2D9]">
                         <p style="font-family: 'Poppins'; font-weight:700;" class="text-[0.875rem] md:text-[1rem]">{{$item->title}}</p>
                         <p style="font-family: 'Poppins'; font-weight:200;" class="py-1">{!! $item->description !!}</p>
                         <table class="mt-1">

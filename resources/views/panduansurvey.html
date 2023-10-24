@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tailwind CSS Modal</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.7/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="flex justify-center items-center min-h-screen">
+
+    <!-- Background overlay -->
+    <div class="fixed top-0 left-0 w-full h-full flex items-center justify-center z-10 overlay hidden" id="modal-overlay">
+        <div class="modal bg-white w-1/2 rounded-lg">
+            <!-- Modal Content -->
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+            <div class="modal-header bg-green-100 rounded-lg shadow-lg pb-6 pt-12 px-8 flex items-center">
+                <i class="fas fa-info-circle text-2xl mr-2"></i> <!-- Tambahkan ikon Font Awesome di sini -->
+                <h2 class="text-xl font-semibold">Paduan Mengisi Survey</h2>
+            </div>
+        @foreach ($datas as $data)
+    <div class="modal-body mt-2 p-8">
+        <h2>1. Survei berikut adalah {{ $data->title }}, pastikan Anda mengisi survei yang benar</h2>
+        <h2>2. Isi jawaban survei harus sesuai dengan pertanyaan yang diberikan</h2>
+        <h2>3. Setelah selesai mengisi seluruh survei pastikan untuk melakukan submit dengan cara menekan tombol submit di halaman bawah survei</h2>
+        <h2>4. Pastikan untuk mengisi semua pertanyaan yang wajib diisi sebelum menyelesaikan survei</h2>
+        <h2>5. Untuk lanjut ke halaman survei lainnya Anda dapat menekan tombol “selanjutnya” sampai ke halaman terakhir</h2>
+        <h2>6. Setelah memahami seluruh instruksi Anda dapat menekan tombol “selanjutnya” di bawah ini, dan Anda dapat langsung mengerjakan survei yang tersedia</h2>
+    </div>
+        @endforeach
+        <div class="modal-footer mt-4 px-8 pb-4 flex justify-between">
+            <button class="px-4 py-2 bg-gray-300 text-gray-700 rounded hover:bg-gray-400" id="close-modal">Kembali</button>
+            <button class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Selanjutnya</button>
+        </div>
+    </div>
+        </div>
+    </div>
+
+    <!-- Button to open the modal -->
+    <button class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600" id="open-modal">Open Modal</button>
+
+    <style>
+        /* Custom styles for the modal */
+        .overlay {
+            background: rgba(0, 0, 0, 0.6);
+        }
+    </style>
+
+    <script>
+        // JavaScript to show/hide the modal and overlay
+        const openModalButton = document.getElementById('open-modal');
+        const closeModalButton = document.getElementById('close-modal');
+        const modalOverlay = document.getElementById('modal-overlay');
+
+        openModalButton.addEventListener('click', () => {
+            modalOverlay.classList.remove('hidden');
+        });
+
+        closeModalButton.addEventListener('click', () => {
+            modalOverlay.classList.add('hidden');
+        });
+    </script>
+</body>
+</html>

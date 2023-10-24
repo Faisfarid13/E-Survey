@@ -15,15 +15,15 @@
 
 <body>
 <!-- Navbar -->
-<nav class="bg-white p-3 border-2 shadow-xl rounded-b-3xl">
+<nav class="bg-white p-3 shadow-xl">
     <div class="container mx-auto flex justify-between items-center">
         <!-- Logo -->
         <div class="flex items-center space-x-2">
             <img src="{{ asset('/asset/logokemenag.png') }}" alt="Logo" class="w-12 h-12">
-            <h1 class="text-[#266C3E] text-xs font-bold">
-                Badan Litbang dan Diklat <br> 
-                Kementerian Agama RI
-            </h1>
+            <h1 class="text-[#266C3E] text-xs font-bold" style="font-family: 'Poppins';">
+                Badan Litbang dan Diklat <br>
+                <span class="text-sm">Kementerian Agama RI</span>
+            </h1> 
         </div>
 
         <!-- Menu untuk Desktop -->
@@ -76,11 +76,8 @@
 
 @yield('content')
 
-<footer id="footer" class="bg-[#C1DECC]" style="font-family: Poppins;">
+<footer id="footer" class="bg-[#76817C]" style="font-family: Poppins;">
     <div class="relative">
-        <div class=""> <!--gelombang joget image-->
-            <img class="" src="{{ asset('/asset/abstractbaru.svg') }}" alt="">
-        </div>
         <div class="mx-auto w-full max-w-screen-xl p-4 py-1 md:py-6 lg:py-8">
             <div class="md:mt-12 mt-8 md:flex md:justify-between">
                 <div class="mr-4 md:mb-0">
@@ -90,15 +87,15 @@
                         <a href="#"> <iconify-icon icon="iconoir:instagram" style="color: white;" width="35"></iconify-icon> </a>
                     </div>
                 </div>
-                <div class="my-2">
-                    <p class="text-left text-base font-semibold text-[#266C3E]">Badan Moderasi Beragama dan PSDM <br> Kementrian Agama <br> Republik Indonesia </p>
+                <div class="my-2 mr-14">
+                    <p class="text-left text-base font-semibold text-white">Badan Litbang dan Diklat <br> Kementerian Agama <br> Republik Indonesia </p>
                 </div>
                 <div class="md:grid md:grid-cols-2">
-                    <div class="mb-6 md:mx-20">
-                        <h2 class="mb-6 font-bold text-lg text-[#266C3E]">Bantuan</h2>
-                        <ul class="text-[#266C3E] font-normal">
+                    <div class="mb-6 md:mx-4">
+                        <h2 class="mb-6 font-bold text-lg text-white">Bantuan</h2>
+                        <ul class="text-white font-normal">
                             <li>
-                                <a href="https://mail.google.com/mail/?view=cm&to=sisiinfobalitbangdiklat@kemenag.go.id&su=Subjek%20Email&body=Isi%20Pesan" class="hover:underline ">sisiinfobalitbangdiklat@kemenag.go.id</a>
+                                <a href="https://mail.google.com/mail/?view=cm&to=sisinfobalitbangdiklat@kemenag.go.id&su=Subjek%20Email&body=Isi%20Pesan" class="hover:underline ">sisinfobalitbangdiklat@kemenag.go.id</a>
                             </li>
                             <li>
                                 <a>(021) 7404185</a>
@@ -106,10 +103,10 @@
                         </ul>
                     </div>
                     <div>
-                        <h2 class="mb-6 font-bold text-lg text-[#266C3E]">Alamat</h2>
-                        <ul class="text-[#266C3E] font-normal">
+                        <h2 class="mb-6 font-bold text-lg text-white">Alamat</h2>
+                        <ul class="text-white font-normal">
                             <li class="mb-4">
-                                <a href="https://maps.app.goo.gl/TU8QFFtQa6CZ8ajK6" class="hover:underline">Gedung Kemeterian Agama RI, Jl. M.H. Thamrin No.6,<br> RT.2/RW.1, Kb. Sirih, Jakarta, Kota Jakarta Pusat,<br> Daerah Khusus Ibukota Jakarta 10340</a>
+                                <a href="https://maps.app.goo.gl/TU8QFFtQa6CZ8ajK6" class="hover:underline">Gedung Kementerian Agama RI, Jl. M.H. Thamrin No.6,<br> RT.2/RW.1, Kb. Sirih, Jakarta, Kota Jakarta Pusat,<br> Daerah Khusus Ibukota Jakarta 10340</a>
                             </li>
                         </ul>
                     </div>
@@ -117,11 +114,8 @@
             </div>
             <hr class="my-6 border-white sm:mx-auto lg:my-8" />
             <div class="text-center">
-                <p class="text-sm text-center text-[#266C3E] sm:text-center">© 2023 Badan Moderasi Beragama - All Rights Reserved.</p>
+                <p class="text-sm text-center text-white sm:text-center">© 2023 Badan Litbang dan Diklat - All Rights Reserved.</p>
             </div>
-        </div>
-        <div class="absolute bottom-0 right-0">
-            <img src="{{ asset('/asset/abstractbaru2.svg') }}" alt="">
         </div>
     </div>
 </footer>

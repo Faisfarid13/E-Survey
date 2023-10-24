@@ -31,6 +31,7 @@ Route::get('/tentangkami', function () {
 
 Route::get('/detailsurvey', [AnswerController::class, 'detailsurvey']);
 Route::get('/listpegawai', [SurveyController::class, 'listpegawai']);
+Route::get('/', [SurveyController::class, 'listpegawai']);
 Route::get('/dashboard', [AnswerController::class, 'dashboard']);
 Route::get('/', [SurveyController::class, 'index']);
 
