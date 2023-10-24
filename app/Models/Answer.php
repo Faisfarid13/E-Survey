@@ -12,13 +12,17 @@ class Answer extends Model
         'id'
     ];
 
-    public function choices(): HasMany
+    public function choice()
     {
-        return $this->hasMany(Choice::class);
+     return $this->belongsTo(choice::class);
+    }
+    public function user()
+    {
+     return $this->belongsTo(user::class);
     }
 
-    public function users(): HasMany
+    public function question()
     {
-        return $this->hasMany(User::class);
+     return $this->belongsTo(Question::class);
     }
 }

@@ -3,7 +3,7 @@
  <div class="bg-[#C1DECC] pt-10 text-white rounded-b-3xl bg-cover bg-center drop-shadow-lg" style="background-image: url({{ asset('/asset/elemen4.png') }})">
   <div class="w-4/5 mx-auto">
     <div class="">
-      <img src="{{ asset('/asset/logodkvbener.png') }}">
+      <img src="{{ asset('asset/logodkvbener.png') }}">
     </div>
     {{-- <img class="bg-white rounded-full h-18 p-4 opacity-60" src="{{ asset('/asset/logodkvbener.png') }}"> --}}
     {{-- <div class="h-full w-40 border-2 " style="background-image: url({{ asset('/asset/logodkv.png') }})"></div> --}}
@@ -47,7 +47,7 @@
     @foreach ($surveys->take(4) as $item)
     {{-- /formSurvey/{{$item->title}}  {{ route('survey.form', ['id' => $item->id]) }} --}}
     <a href="/formSurvey/{{$item->title}}">
-    <div class="border w-4/5 mx-auto p-3 rounded-lg hover:shadow-lg bg-[#F5C577] mb-5" >
+    <div class="w-4/5 mx-auto p-3 rounded-lg hover:shadow-lg bg-[#F5C577] mb-5" >
       <p style="font-family: Poppins; font-weight:600;" class="text-[0.875rem] md:text-[1rem]">{{$item->title}}</p>
       <p style="font-family: Poppins; font-weight:400" class="py-1 px-4 text-[0.6875rem] md:text-[0.875rem]">{!! $item->description !!}</p>
       <table>
@@ -85,5 +85,5 @@
           window.location.href = newPageUrl;
       }
       </script>
-      
+
  @endsection

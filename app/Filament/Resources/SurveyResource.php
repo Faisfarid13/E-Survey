@@ -22,9 +22,13 @@ use Filament\Tables\Actions\Action;
 class SurveyResource extends Resource
 {
     protected static ?string $model = Survey::class;
-    protected static ?int $navigationSort = 1;
-    protected static ?string $navigationIcon = 'heroicon-o-document';
-    
+    protected static ?int $navigationSort = -8;
+    protected static ?string $navigationGroup = 'Kelola Survey';
+    protected static ?string $recordTitleAttribute = 'title';
+    protected static ?string $navigationLabel = 'Survey';
+    protected static ?string $modelLabel = 'Survey';
+    protected static ?string $navigationIcon = 'heroicon-o-chart-bar-square';
+
 
     public static function form(Form $form): Form
     {
@@ -34,7 +38,7 @@ class SurveyResource extends Resource
                 Forms\Components\TextInput::make('title')
                 ->label('Judul')
 
-                
+
                 ->required(),
                 Forms\Components\RichEditor::make('description')
                 ->label('Deskripsi')
@@ -58,7 +62,7 @@ class SurveyResource extends Resource
                 // ])
                 // ->saveRelationshipsBeforeChildrenUsing(function (array $data): array {
                 //     $data['status'] = 'NON-AKTIF';
-             
+
                 //     return $data;
                 // }),
                 Forms\Components\DatePicker::make('tanggal_mulai')
@@ -80,7 +84,7 @@ class SurveyResource extends Resource
                 ->tooltip(fn ($state): string => $state),
                 Tables\Columns\TextColumn::make('description')
                 ->label('Deskripsi')->formatStateUsing(fn (string $state): string => strip_tags($state))->limit(15)
-                ->tooltip(fn ($state): string => $state), 
+                ->tooltip(fn ($state): string => $state),
 
                 Tables\Columns\TextColumn::make('criteria')->label('Kriteria'),
                 TextColumn::make('status')
@@ -125,7 +129,7 @@ class SurveyResource extends Resource
                 ]),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
@@ -133,7 +137,7 @@ class SurveyResource extends Resource
             RelationManagers\QuestionsRelationManager::class,
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
@@ -166,9 +170,9 @@ class SurveyResource extends Resource
                         Infolists\Components\TextEntry::make('tanggal_mulai')->dateTime('d F Y'),
                         Infolists\Components\TextEntry::make('tanggal_selesai')->dateTime('d F Y'),
                     ])->columns(2)
-                    
+
                 ]),
-                
+
             ]);
     }
 }

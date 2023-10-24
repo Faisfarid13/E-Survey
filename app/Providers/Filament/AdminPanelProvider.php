@@ -28,7 +28,7 @@ class AdminPanelProvider extends PanelProvider
     public function panel(Panel $panel): Panel
     {
         return $panel
-            
+
             ->default()
             ->sidebarCollapsibleOnDesktop(true)
             ->id('admin')
@@ -36,7 +36,7 @@ class AdminPanelProvider extends PanelProvider
             ->login(Login::class)
             ->brandName('e-survey')
             ->colors([
-                'primary' => '#137C13',          
+                'primary' => '#137C13',
             ])
             ->font('Poppins')
             ->brandName('e-survey')
@@ -61,11 +61,12 @@ class AdminPanelProvider extends PanelProvider
                 DispatchServingFilamentEvent::class,
             ])
             ->profile(AuthEditProfile::class)
-            ->favicon(asset('asset/logo.svg'))
+            ->favicon(asset('favicon.png'))
             ->authGuard('web')
             ->plugins([
                 FilamentShieldPlugin::make()
             ])
+            ->readOnlyRelationManagersOnResourceViewPagesByDefault(false)
             ->authMiddleware([
                 Authenticate::class,
             ]);
