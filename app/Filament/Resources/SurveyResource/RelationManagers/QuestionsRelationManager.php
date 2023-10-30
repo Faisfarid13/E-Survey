@@ -56,8 +56,26 @@ class QuestionsRelationManager extends RelationManager
                         default => [],
                     },)
                     ->key('dynamicTypeFields'),
-                
 
+                    Grid::make(1)
+                    ->schema(fn (Get $get): array => match ($get('question_category_id'))
+                    {
+                        '4', '5'=> [
+                            Forms\Components\Repeater::make('choice')
+                            ->relationship()
+                             ->visibleOn('edit')
+                            ->schema([
+                                Forms\Components\TextInput::make('pilihan_pertanyaan')->label('Pilihan_pertanyaan')->required(),
+                            ])
+                            ],
+                        default => [],
+                    },)
+                    ->key('dynamicTypeFields'),
+
+
+
+
+                    
                     Grid::make(1)
                     ->schema([
                         Forms\Components\Repeater::make('choice')
@@ -66,7 +84,7 @@ class QuestionsRelationManager extends RelationManager
                             ->schema([
                                 Forms\Components\TextInput::make('pilihan_pertanyaan')->label('Pilihan_pertanyaan')->required(),
                             ])
-                    ]), //MASIH BELOM BENER LOGIKANYA
+                    ]),
 
                     Forms\Components\TagsInput::make('validation')
                     ->suggestions([
