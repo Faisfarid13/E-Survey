@@ -45,7 +45,7 @@ class QuestionsRelationManager extends RelationManager
                     Grid::make(1)
                     ->schema(fn (Get $get): array => match ($get('question_category_id'))
                     {
-                        '4', '5'=> [
+                        '4', '5','6','7'=> [
                             Forms\Components\Repeater::make('choice')
                             ->relationship()
                              ->visibleOn('create')
