@@ -18,24 +18,28 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [SurveyController::class, 'index'])->name('home');
-Route::get('/riwayats', [SurveyController::class, 'riwayat']);
-
-
-Route::get('/formSurvey/{title}', [QuestionController::class, 'formSurvey']);
-Route::post('/formSurvey/{title}/submit', [AnswerController::class, 'submitSurvey']);
-
-
 Route::get('form/{event:slug}', [\App\Http\Controllers\EventResponseController::class, 'index'])
         ->name('event.form');
 Route::get('form/{eventResponse:uuid}/result', [\App\Http\Controllers\EventResponseController::class, 'success'])
     ->name('event.success');
-Route::get('/tentangkami', function () {
-    return view('tentangkami');
-});
-
+    
+Route::get('/formSurvey/{title}', [QuestionController::class, 'formSurvey']);
+Route::post('/formSurvey/{title}/submit', [AnswerController::class, 'submitSurvey']);
+    
+Route::get('/', [SurveyController::class, 'index'])->name('home');
+    
+Route::get('/riwayats', [SurveyController::class, 'riwayat']);
+        
 Route::get('/detailsurvey', [AnswerController::class, 'detailsurvey']);
-// /detailsurvey/{id}
+   // /detailsurvey/{id}
 Route::get('/listpegawai', [SurveyController::class, 'listpegawai']);
+
 Route::get('/listguest', [SurveyController::class, 'listGuest']);
-Route::get('/dashboard', [AnswerController::class, 'dashboard']);
+
+Route::get('/dashboard', [SurveyController::class, 'dashboard']);
+
+Route::get('/hasil/{scriptId}', [SurveyController::class, 'hasilAnalis']);
+
+Route::get('/tentangkami', function () {
+        return view('guest.tentangkami');
+    });

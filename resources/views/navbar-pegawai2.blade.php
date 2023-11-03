@@ -13,33 +13,32 @@
 <body>
 
 <!-- Navbar -->
-<nav class="bg-white p-3 border-2 drop-shadow-2xl rounded-b-3xl" style="font-family: 'Poppins';">
+<nav class="bg-white p-3 drop-shadow-xl" style="font-family: 'Poppins';">
         <div class="container mx-auto flex justify-between items-center">
             <!-- Logo -->
             <div class="flex items-center space-x-2">
                 <img src="{{ asset('/asset/logokemenag.png') }}" alt="Logo" class="w-12 h-12">
-                <h1 class="text-[#266C3E] text-xs font-bold">
-                    E-Survey <br>
-                    Badan Moderasi Beragama dan PDSM <br> 
-                    Kemenag RI
-                </h1>
+                <h1 class="text-[#137C13] text-xs font-bold" style="font-family: 'Poppins';">
+                    Badan Litbang dan Diklat <br>
+                    <span class="text-sm">Kementerian Agama RI</span>
+                </h1> 
             </div>
 
         <!-- Menu untuk Desktop -->
-        <ul class="hidden md:flex lg:flex space-x-6 text-[#266C3E] text-lg font-semibold items-center">
+        <ul class="hidden md:flex lg:flex space-x-6 text-[#137C13] text-lg font-semibold items-center">
                 <li class="nav-item">
-                    <a class="nav-link text-[#266C3E] hover:text-gray-200" href="/dashboard">Dashboard</a>
+                    <a class="nav-link text-[#137C13] hover:text-gray-200" href="/dashboard">Dashboard</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-[#266C3E] hover:text-gray-200" href="/listpegawai">Survei</a>
+                    <a class="nav-link text-[#137C13] hover:text-gray-200" href="/listpegawai">Survei</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-[#266C3E] hover:text-gray-200" href="/riwayats">Riwayat Survei</a>
+                    <a class="nav-link text-[#137C13] hover:text-gray-200" href="/riwayats">Riwayat Survei</a>
                 </li>
             <li class="relative w-32 h-8 group">
                 <div class="rounded-full border-white border-2 bg-cover text-absolute inset-y-0 left-0 w-8 h-8" style="background-image: url({{ asset('/asset/profile.svg') }})"></div>
                 <button id="profile-button" class="focus:outline-none absolute inset-y-0 right-0 w-22 h-8 text-lg font-semibold" href='#'>Username</button>
-                <div id="profile-dropdown" class="z-40 hidden bg-white text-[#266C3E] text-center p-2 rounded-lg shadow-lg right-0 absolute">
+                <div id="profile-dropdown" class="z-40 hidden bg-white text-[#137C13] text-center p-2 rounded-lg shadow-lg right-0 absolute">
                   <a href="#" class='block btn btn-light rounded-lg px-6 py-1 border-2 border-gray border-solid'>Profile</a>
                   <div class="mt-1">
                   <a href="/" class='block btn btn-light rounded-lg px-6 py-1 border-2 border-gray border-solid'>Keluar</a>
@@ -60,14 +59,14 @@
 </nav>
 
 <!-- Dropdown Menu untuk Mode Mobile -->
-<div id="dropdown-menu" class="hidden bg-white text-[#266C3E] font-semibold py-4 lg:hidden">
+<div id="dropdown-menu" class="hidden bg-white text-[#137C13] font-semibold py-4 lg:hidden">
     <ul class="text-center space-y-4">
-        <li><a href="#" class="text-[#266C3E] hover:text-gray-200">Dashboard</a></li>
-        <li><a href="#" class="text-[#266C3E] hover:text-gray-200">Survey</a></li>
-        <li><a href="/riwayats" class="text-[#266C3E] hover:text-gray-200">Riwayat</a></li>
+        <li><a href="#" class="text-[#137C13] hover:text-gray-200">Dashboard</a></li>
+        <li><a href="#" class="text-[#137C13] hover:text-gray-200">Survey</a></li>
+        <li><a href="/riwayats" class="text-[#137C13] hover:text-gray-200">Riwayat</a></li>
         <li class="relative">
-            <button class="text-center text-[#266C3E] font-semibold hover:text-gray-200" id="username-dropdown-button">Username</button>
-            <div class="hidden bg-white text-[#266C3E] ml-28 mt-20 p-2 rounded-lg shadow-lg absolute left-1/2 transform -translate-x-1/2 -top-20" id="username-dropdown">
+            <button class="text-center text-[#137C13] font-semibold hover:text-gray-200" id="username-dropdown-button">Username</button>
+            <div class="hidden bg-white text-[#137C13] ml-28 mt-20 p-2 rounded-lg shadow-lg absolute left-1/2 transform -translate-x-1/2 -top-20" id="username-dropdown">
                 <a href="#" class="block btn btn-light rounded-lg px-6 py-1 border-2 border-gray border-solid">Profile</a>
                 <div class="mt-1">
                 <a href="/" class="block btn btn-light rounded-lg px-6 py-1 border-2 border-gray border-solid">Keluar</a>

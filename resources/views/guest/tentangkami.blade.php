@@ -10,7 +10,7 @@
         <!-- Card 1 - Kiri -->
         <div class="w-flex md:w-1/2 md:pl-8">
             <div class="p-2 max-w-screen-xl">
-                <img src="{{ asset('/asset/ilustrasikami2.png') }}" alt="Logo" class="w-flex h-flex">
+                <img src="{{ asset('/asset/ilustrasikami.png') }}" alt="Logo" class="w-flex h-flex">
             </div>
         </div>
 

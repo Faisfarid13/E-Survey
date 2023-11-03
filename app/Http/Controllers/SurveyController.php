@@ -8,34 +8,31 @@ use App\Models\Survey;
 class SurveyController extends Controller
 {
     public function index(){
-        return view('homepage', [
+        return view('guest.homepage', [
             'surveys' => Survey::all()
         ]);
     }
-    public function dashboard(){
+
+   public function dashboard() {
         $now = date('Y-m-d');
-        return view('dashboard', [
-            'datas' => Survey::Where('tanggal_selesai', '>=', $now)->get()
-        ]);
+        $surveys = Survey::where('tanggal_selesai', '>=', $now)
+            ->orderBy('criteria')
+            ->get();
+    
+        return view('pegawai.dashboard', compact('surveys'));
     }
 
     public function riwayat(){
-        return view('riwayatSurvey', [
-            'surveys' => Survey::Where('status', 'SELESAI')->get()
-        ]);
-    }
-
-    public function listguest(){
-        return view('surveyListGuest', [
-            'surveys' => Survey::Where('criteria', 'umum')
-            ->where('status', 'AKTIF')
+        return view('pegawai.riwayatSurvey', [
+            'surveys' => Survey::Where('status', 'SELESAI')
+            ->where('criteria', 'pegawai', 'unit')
             ->get()
         ]);
     }
 
-    public function listpegawai(){
-        return view('surveyList', [
-            'surveys' => Survey::Where('criteria', 'pegawai')
+    public function listguest(){
+        return view('guest.surveyListGuest', [
+            'surveys' => Survey::Where('criteria', 'umum')
             ->where('status', 'AKTIF')
             ->get()
         ]);
@@ -46,6 +43,31 @@ class SurveyController extends Controller
             'surveys' => Survey::Where('criteria', 'pegawai')
             ->where('status', 'AKTIF')
             ->get()
+        ]);
+    }
+
+    public function hasilAnalis($scriptId){
+        return view('hasilAnalis', [
+            'surveys' => Survey::where('id', $scriptId)->get()
+        ]);
+    }
+
+    public function listpegawai(Request $request)
+    {
+        $perPage = $request->input('entries', 5);
+        $search = $request->input('search');
+        
+        $query = Survey::where('criteria', 'pegawai')
+        ->where('status', 'AKTIF');
+
+        if ($search) {
+            $query->where('title', 'like', '%' . $search . '%');
+        }
+
+        $surveys = $query->paginate($perPage);
+
+        return view('pegawai.surveyList', [
+            'surveys' => $surveys
         ]);
     }
 

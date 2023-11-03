@@ -15,19 +15,19 @@
 
 <body>
 <!-- Navbar -->
-<nav class="bg-white p-3 shadow-xl">
+<nav class="bg-white p-3 drop-shadow-xl">
     <div class="container mx-auto flex justify-between items-center">
         <!-- Logo -->
         <div class="flex items-center space-x-2">
             <img src="{{ asset('/asset/logokemenag.png') }}" alt="Logo" class="w-12 h-12">
-            <h1 class="text-[#266C3E] text-xs font-bold" style="font-family: 'Poppins';">
+            <h1 class="text-[#137C13] text-xs font-bold" style="font-family: 'Poppins';">
                 Badan Litbang dan Diklat <br>
                 <span class="text-sm">Kementerian Agama RI</span>
             </h1> 
         </div>
 
         <!-- Menu untuk Desktop -->
-        <ul class="hidden md:flex lg:flex space-x-6 text-[#266C3E] text-lg font-semibold items-center" style="font-family: 'Poppins';">
+        <ul class="hidden md:flex lg:flex space-x-6 text-[#137C13] text-lg font-semibold items-center" style="font-family: 'Poppins';">
             <li class="nav-item">
                 <a class="nav-link hover:text-gray-200" href="/">Beranda</a>
             </li>
@@ -38,7 +38,7 @@
                 <a class="nav-link hover:text-gray-200" href="../tentangkami">Tentang Kami</a>
             </li>
             <li class="nav-item">
-                <button type="button" class="btn btn-light bg-white text-[#266C3E] font-3xl rounded-lg border-2 shadow-lg font-semibold w-28 h-10"><a href="../admin/login">Masuk</a></button>
+                <button type="button" class="btn btn-light bg-white text-[#137C13] font-3xl rounded-lg border-2 shadow-lg font-semibold w-28 h-10"><a href="../admin/login">Masuk</a></button>
             </li>
         </ul>
         
@@ -57,10 +57,10 @@
 <!-- Dropdown Menu untuk Mode Mobile -->
 <div id="dropdown-menu" class="hidden font-semibold bg-white py-4 lg:hidden">
     <ul class="text-center space-y-4">
-        <li><a href="#" class="text-[#266C3E] hover:text-gray-200">Beranda</a></li>
-        <li><a href="#" class="text-[#266C3E] hover:text-gray-200">Pusat Bantuan</a></li>
-        <li><a href="#" class="text-[#266C3E] hover:text-gray-200">Tentang kami</a></li>
-        <li><button type="button" class="btn btn-light font-semibold rounded-lg text-[#266C3E] shadow-lg border-2 bg-white w-24 h-10"><a href="#">Masuk</a></button></li>
+        <li><a href="#" class="text-[#137C13] hover:text-gray-200">Beranda</a></li>
+        <li><a href="#" class="text-[#137C13] hover:text-gray-200">Pusat Bantuan</a></li>
+        <li><a href="#" class="text-[#137C13] hover:text-gray-200">Tentang kami</a></li>
+        <li><button type="button" class="btn btn-light font-semibold rounded-lg text-[#137C13] shadow-lg border-2 bg-white w-24 h-10"><a href="#">Masuk</a></button></li>
     </ul>
 </div>
 

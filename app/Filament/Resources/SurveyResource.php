@@ -157,7 +157,7 @@ class SurveyResource extends Resource
                 Section::make('Detail Survey')
                     ->schema([
                         Infolists\Components\TextEntry::make('title'),
-                        Infolists\Components\TextEntry::make('description')->formatStateUsing(fn (string $state): string => strip_tags($state))->limit(30),
+                        Infolists\Components\TextEntry::make('description')->formatStateUsing(fn (string $state): string => strip_tags($state))->limit(300),
                         Infolists\Components\TextEntry::make('criteria'),
                         Infolists\Components\TextEntry::make('status')
                             ->badge()

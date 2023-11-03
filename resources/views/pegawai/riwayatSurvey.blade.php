@@ -43,24 +43,24 @@ Riwayat Survei
             $('#example').DataTable();
         } );
     </script>
-    <h1 style="font-weight:bold; font-family:Poppins; font-size: 1.5rem; text-align:center; color:#77A06A; margin-top:2.5%;">
+    <h1 style="font-weight:bold; font-family:Poppins; font-size: 1.5rem; text-align:center; color:#C7E2D9; margin-top:2.5%;">
         Riwayat Survei
     </h1>
     <table id="example" class="row-border stripe" style="z-index: 10; width:100%; font-family:Poppins; font-size: 1rem; border: 1px black solid;">
         <thead>
-            <tr style="font-weight: 400; background-color: #77A06A">
-                <th class="text-white text-sm md:text-base" style="text-align: center;">No</th>
-                <th class="text-white text-sm md:text-base" style="text-align: center;">Nama Survey</th>
-                <th class="text-white text-sm md:text-base" style="text-align: center;">Tanggal Selesai</th>
-                <th class="text-white text-sm md:text-base" style="text-align: center;">Status</th>
+            <tr style="font-weight: 400; background-color: #C7E2D9">
+                <th class="text-black text-sm md:text-base" style="text-align: center;">No</th>
+                <th class="text-black text-sm md:text-base" style="text-align: center;">Nama Survey</th>
+                <th class="text-black text-sm md:text-base" style="text-align: center;">Tanggal Selesai</th>
+                <th class="text-black text-sm md:text-base" style="text-align: center;">Status</th>
             </tr>
         </thead>
         @foreach ($surveys as $data)
         <tbody class="text-sm md:text-base" style="font-weight: 400;">
-            <tr>
+            <tr onclick="">
                 <td style="width: 5%; text-align: center;">{{ $loop->iteration }}</td>
                 <td style="width: 30%">{{ $data->title }}</td>
-                <td style="width: 20%; text-align: center;">{!! Str::limit($data->tanggal_selesai, 100, '...')!!}</td>
+                <td style="width: 20%; text-align: center;">{{$data->tanggal_selesai}}</td>
                 <td style="width: 10%; text-align: center;">{{ $data->status }}</td>
             </tr>
         </tbody>
