@@ -28,4 +28,8 @@ class Survey extends Model
     {
         return $this->hasMany(Question::class);
     }
+    public function answer(): HasMany
+    {
+        return $this->hasMany(Answer::class);
+    }
 }
