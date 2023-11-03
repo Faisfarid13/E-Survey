@@ -37,7 +37,9 @@
                 </li>
             <li class="relative w-32 h-8 group">
                 <div class="rounded-full border-white border-2 bg-cover text-absolute inset-y-0 left-0 w-8 h-8" style="background-image: url({{ asset('/asset/profile.svg') }})"></div>
-                <button id="profile-button" class="focus:outline-none absolute inset-y-0 right-0 w-22 h-8 text-lg font-semibold" href='#'>Username</button>
+                @auth
+                <button id="profile-button" class="focus:outline-none absolute inset-y-0 right-0 w-22 h-8 text-lg font-semibold" href='#'>{{ auth()->user()->name }}</button>
+                @endauth
                 <div id="profile-dropdown" class="z-40 hidden bg-white text-[#137C13] text-center p-2 rounded-lg shadow-lg right-0 absolute">
                   <a href="#" class='block btn btn-light rounded-lg px-6 py-1 border-2 border-gray border-solid'>Profile</a>
                   <div class="mt-1">
@@ -65,7 +67,9 @@
         <li><a href="#" class="text-[#137C13] hover:text-gray-200">Survey</a></li>
         <li><a href="/riwayats" class="text-[#137C13] hover:text-gray-200">Riwayat</a></li>
         <li class="relative">
-            <button class="text-center text-[#137C13] font-semibold hover:text-gray-200" id="username-dropdown-button">Username</button>
+            @auth
+            <button class="text-center text-[#266C3E] font-semibold hover:text-gray-200" id="username-dropdown-button">{{ auth()->user()->name }}</button>
+            @endauth
             <div class="hidden bg-white text-[#137C13] ml-28 mt-20 p-2 rounded-lg shadow-lg absolute left-1/2 transform -translate-x-1/2 -top-20" id="username-dropdown">
                 <a href="#" class="block btn btn-light rounded-lg px-6 py-1 border-2 border-gray border-solid">Profile</a>
                 <div class="mt-1">

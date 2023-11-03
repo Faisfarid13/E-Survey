@@ -5,7 +5,9 @@
             <!-- Left Column: Welcome and Survey List -->
             <div class="col-span-2 space-y-8">
                 <div class="bg-[#C7E2D9] text-black p-8 rounded-lg shadow-lg">
-                    <h2 class="text-2xl font-semibold">Selamat Datang, username!</h2>
+                    @auth
+                    <h2 class="text-2xl font-semibold">Selamat Datang, {{ auth()->user()->name }}!</h2>
+                    @endauth
                     <span>Selamat Datang Kembali di Aplikasi E-Survey Kami!</span>
                 </div>
                 <h2 class="text-2xl font-semibold">Surve yang harus dikerjakan</h2>
@@ -69,7 +71,7 @@
             <div class="col-span-1">
                     <div class="calendar-card bg-white border border-black p-4 rounded-lg">
                         <h2 class="text-xl font-bold px-2">Kalender</h2>
-                        <h2 class="font-semibold pl-2 border-b pb-4 border-black">{{ date("F j, Y, g:i A") }}</h2>
+                        <h2 class="font-semibold pl-2 border-b pb-4 border-black">{{ date("j F, Y") }}</h2>
                         @foreach ($surveys->take(3) as $survey)
                         @if ($survey->criteria = $survey->status == 'AKTIF' && $survey->tanggal_mulai <= \Carbon\Carbon::now())
                             <div class="calendar-item mt-4">
