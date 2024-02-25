@@ -1,6 +1,6 @@
 <x-layouts.app>
     @section('metadata')
-        <meta property="og:title" content="Formulir CV "{{$event->name}}/>
+        <meta property="og:title" content="Form Kegiatan"{{$event->name}}/>
         <meta property="og:site_name" content="e-survey Badan Litbang dan Diklat - Kementerian Agama"/>
         <meta property="og:description" content="e-survey Badan Litbang dan Diklat - Kementerian Agama"/>
         <meta property="og:type" content="article"/>

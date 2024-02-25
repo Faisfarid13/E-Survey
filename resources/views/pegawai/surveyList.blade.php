@@ -1,16 +1,12 @@
 @extends('navbar-pegawai2')
-
-@section('title')
-    Survey List
-@endsection
-
+@section('title', 'Survei List')
 @section('content')
     <div class="w-[90%] mx-auto my-14">
         <div class="grid grid-cols-2 mb-5 md:mb-10">
             <div class="grid grid-rows">
                 <div class="relative flex justify-end w-full md:w-fit">
                     <label for="entries" class="text-[0.875rem] md:text-[1rem] md:w-56 pt-2">Show Entries : </label>
-                    <select id="entries" class="bg-[#F7D296] border border-gray-300 text-gray-900 text-sm rounded-lg shadow-md block w-2/4 md:w-full text-center">
+                    <select id="entries" class="bg-[#F7D296] text-gray-900 text-sm rounded-lg shadow-md block w-2/4 md:w-full text-center">
                         <option value="5" {{ request('entries') == 5 ? 'selected' : '' }}>5</option>
                         <option value="10" {{ request('entries') == 10 ? 'selected' : '' }}>10</option>
                         <option value="20" {{ request('entries') == 20 ? 'selected' : '' }}>20</option>
@@ -19,16 +15,16 @@
                 </div>
             </div>
             <div class="flex justify-end w-full">
-                <input type="text" id="search" placeholder="Cari judul survey ...." class="border-[#9A9A9A] border-[1px] rounded-[0.625rem] h-10 p-2 w-[60%] md:w-[40%] text-[0.875rem] md:text-[1rem]">
+                <input type="text" id="search" placeholder="Cari judul survei...." class="border-[#9A9A9A] border-[1px] rounded-[0.625rem] h-10 p-2 w-[60%] md:w-[40%] text-[0.875rem] md:text-[1rem]">
             </div>
         </div>
 
         <table class="tableData w-full" id="search-results">
             <tbody>
                 @foreach ($surveys as $item)
-                <tr>
+                <tr surveyId="{{ $item->id }}">
                     <td>
-                        <div class="border w-full mx-auto p-3 rounded-lg hover:shadow-lg hover:bg-white hover:border bg-[#C7E2D9] mb-2">
+                        <div class="w-full mx-auto p-3 rounded-lg hover:shadow-lg hover:bg-white hover:border border-[#9A9A9A] bg-[#C7E2D9] mb-2 cursor-pointer">
                             <p style="font-family: Poppins; font-weight:600;" class="text-[0.875rem] md:text-[1rem]">{{$item->title}}</p>
                             <p style="font-family: Poppins; font-weight:400" class="py-1 text-[0.6875rem] md:text-[0.875rem]">{!! Str::limit($item->description, 200, '...') !!}</p>
                             <table>
@@ -78,17 +74,34 @@
         //         });
         // });
 
-        searchInput.addEventListener("input", function () {
+        searchInput.addEventListener("keypress", function () {
             var searchText = searchInput.value;
             var selectedValue = selectElement.value;
 
-            window.location.href = "listpegawai?entries=" + selectedValue + "&search=" + searchText;
+            if(event.key == "Enter"){
+                if(searchText == ""){
+                    window.location.href = "/listpegawai"
+                }else{
+                    window.location.href = "listpegawai?entries=" + selectedValue + "&search=" + searchText;
+                }
+            }
         });
 
         selectElement.addEventListener("change", function () {
             var selectedValue = selectElement.value;
 
             window.location.href = "listpegawai?entries=" + selectedValue;
+        });
+    </script>
+
+    <script type="module">
+        $(document).ready(function(){
+            $('tr').click(function(){
+            
+            const attributeValue = $(this).attr('surveyId');
+            console.log(attributeValue);
+            window.location.href = "/detailsurvey/"+attributeValue;
+            });
         });
     </script>
 @endsection

@@ -83,24 +83,30 @@ class EventResource extends Resource
                                 'underline',
                                 'undo',
                             ]),
-//                        Forms\Components\TextInput::make('slug')
-//                            ->disabledOn('edit'),
-                        Forms\Components\DatePicker::make('date_start')
+                            //                        Forms\Components\TextInput::make('slug')
+                            //                            ->disabledOn('edit'),
+                            Forms\Components\DatePicker::make('date_start')
                             ->label('Tanggal Mulai')
                             ->native(false)
                             ->required()
                             ->minDate(now())
                             ->format('Y-m-d')
                             ->displayFormat('d/m/Y'),
-                        Forms\Components\DatePicker::make('date_end')
+                            Forms\Components\DatePicker::make('date_end')
                             ->label('Tanggal Akhir')
                             ->native(false)
                             ->required()
                             ->format('Y-m-d')
                             ->afterOrEqual('startdate')
                             ->displayFormat('d/m/Y'),
-                    ])->columns(1)
-            ]);
+                            Forms\Components\Select::make('criteria')
+                            ->label('Kriteria')
+                            ->options([
+                                'internal' => 'Internal',
+                                'eksternal' => 'Eksternal'
+                            ]),
+                            ])->columns(1)
+                        ]);
     }
 
     public static function table(Table $table): Table
@@ -139,6 +145,7 @@ class EventResource extends Resource
                         ->color('primary')
                         ->url(fn (Event $record): string => route('event.form', $record))
                         ->openUrlInNewTab(),
+                    Tables\Columns\TextColumn::make('criteria')->label('Kriteria'),
             ])
             ->filters([
                 //
@@ -167,7 +174,10 @@ class EventResource extends Resource
                             ->label('Deskripsi'),
                         Infolists\Components\TextEntry::make('location')
                             ->html()
-                            ->label('Tempat Kegaitan'),
+                            ->label('Tempat Kegiatan'),
+                        Infolists\Components\TextEntry::make('criteria')
+                            ->html()
+                            ->label('Kriteria'),
                         Infolists\Components\TextEntry::make('date_start')
                             ->label('Tanggal Mulai')
                             ->color('warning')

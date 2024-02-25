@@ -20,6 +20,7 @@ class Event extends Model
         'date_start',
         'date_end',
         'other',
+        'criteria',
     ];
     protected $dates = [
         'date_start',

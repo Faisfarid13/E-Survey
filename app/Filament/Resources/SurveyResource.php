@@ -51,23 +51,10 @@ class SurveyResource extends Resource
                     'umum' => 'UMUM',
                 ])
                 ->required(),
-
-                // Forms\Components\Select::make('status')
-                // ->label('Status')
-                // ->hidden()
-                // ->options([
-                //     'AKTIF' => 'AKTIF',
-                //     'NON-AKTIF' => 'NON-AKTIF',
-                //     'SELESAI' => 'SELESAI',
-                // ])
-                // ->saveRelationshipsBeforeChildrenUsing(function (array $data): array {
-                //     $data['status'] = 'NON-AKTIF';
-
-                //     return $data;
-                // }),
+                
                 Forms\Components\DatePicker::make('tanggal_mulai')
                 ->required()
-                ->minDate(now()),
+                ->minDate(date("Y-m-d", strtotime("-1 hour", strtotime(now())))),
                 Forms\Components\DatePicker::make('tanggal_selesai')
                 ->required()
                 ->afterOrEqual('tanggal_mulai'),
@@ -83,7 +70,7 @@ class SurveyResource extends Resource
                 ->label('Judul')->sortable()->searchable()->limit(15)
                 ->tooltip(fn ($state): string => $state),
                 Tables\Columns\TextColumn::make('description')
-                ->label('Deskripsi')->formatStateUsing(fn (string $state): string => strip_tags($state))->limit(15)
+                ->label('Deskripsi')->html()->limit(15)
                 ->tooltip(fn ($state): string => $state),
 
                 Tables\Columns\TextColumn::make('criteria')->label('Kriteria'),
@@ -157,7 +144,7 @@ class SurveyResource extends Resource
                 Section::make('Detail Survey')
                     ->schema([
                         Infolists\Components\TextEntry::make('title'),
-                        Infolists\Components\TextEntry::make('description')->formatStateUsing(fn (string $state): string => strip_tags($state))->limit(300),
+                        Infolists\Components\TextEntry::make('description')->html()->limit(300),
                         Infolists\Components\TextEntry::make('criteria'),
                         Infolists\Components\TextEntry::make('status')
                             ->badge()

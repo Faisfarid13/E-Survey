@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('event_responses', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('event_id')->nullable()->constrained();
+            $table->foreignId('event_id')->nullable()->constrained()->onDelete('cascade');
             $table->uuid()->nullable();
             $table->text('name');
             $table->text('email');

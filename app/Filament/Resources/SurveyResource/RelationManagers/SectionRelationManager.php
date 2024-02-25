@@ -25,6 +25,9 @@ class SectionRelationManager extends RelationManager
                     ->required()
                     ->label('Section')
                     ->maxLength(255),
+                    Forms\Components\RichEditor::make('deskripsi')
+                    // ->required()
+                    ->label('Deskripsi'),
             ])
             ]);
     }
@@ -36,6 +39,8 @@ class SectionRelationManager extends RelationManager
             ->recordTitleAttribute('section')
             ->columns([
                 Tables\Columns\TextColumn::make('section')->label('Name'),
+                Tables\Columns\TextColumn::make('deskripsi')
+                ->label('Deskripsi')->html(),
             ])
             ->filters([
                 //

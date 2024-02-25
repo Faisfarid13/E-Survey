@@ -17,4 +17,8 @@ class QuestionCategory extends Model
     {
         return $this->hasMany(Question::class);
     }
+    public function wilayah()
+    {
+        return $this->hasMany(Wilayah::class);
+    }
 }

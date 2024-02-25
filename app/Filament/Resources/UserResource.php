@@ -23,6 +23,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Filament\Tables\Actions\BulkActionGroup;
 use Filament\Tables\Actions\DeleteBulkAction;
 use App\Filament\Resources\UserResource\Pages;
+use Filament\Forms\Components\FileUpload;
 use App\Filament\Tables\Columns\IncrementingColumn;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\UserResource\Pages\EditUser;
@@ -46,7 +47,8 @@ class UserResource extends Resource
         ->schema([
             Card::make()->schema([
                 TextInput::make('name')
-                    ->label('Nama.'),
+                    ->label('Nama.')
+                    ->required(),
                 TextInput::make('nip')
                     ->label('NIP'),
                 TextInput::make('pangkat')
@@ -59,21 +61,20 @@ class UserResource extends Resource
                     ->label('No. HP')
                     ->prefix('+62'),
                 TextInput::make('email')
-                    ->label('Email'),
+                    ->label('Email')
+                    ->required(),
                 TextInput::make('password')
                     ->label('Password')
                     ->password()
                     ->dehydrateStateUsing(fn (string $state): string => Hash::make($state))
-                    ->dehydrated(fn (?string $state): bool => filled($state)),
+                    ->dehydrated(fn (?string $state): bool => filled($state))
+                    ->required(),
                 Select::make('roles')
                         ->label('Role')
                         ->relationship('roles', 'name')
                         ->preload(),
-                Select::make('permissions')
-                        ->label('Izin')
-                        ->multiple()
-                        ->relationship('permissions', 'name')
-                        ->preload()
+                FileUpload::make('photo')
+                        ->label('Foto Profil'),
             ])->columns(2),
          ]);
     }

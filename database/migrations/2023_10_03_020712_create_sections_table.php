@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('sections', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('survey_id')->nullable()->constrained();
+            $table->foreignId('survey_id')->nullable()->constrained()->onDelete('cascade');
             $table->text('section');
             $table->timestamps();
         });

@@ -45,7 +45,7 @@ class AnswerResource extends Resource
                 ->label('Judul')->sortable()->searchable()->limit(15)
                 ->tooltip(fn ($state): string => $state),
                 Tables\Columns\TextColumn::make('description')
-                ->label('Deskripsi')->formatStateUsing(fn (string $state): string => strip_tags($state))->limit(15)
+                ->label('Deskripsi')->html()
                 ->tooltip(fn ($state): string => $state), 
                 Tables\Columns\TextColumn::make('status'),
             ])
@@ -88,7 +88,7 @@ class AnswerResource extends Resource
                 Section::make('Detail Survey')
                     ->schema([
                         Infolists\Components\TextEntry::make('title'),
-                        Infolists\Components\TextEntry::make('description')->formatStateUsing(fn (string $state): string => strip_tags($state))->limit(30),
+                        Infolists\Components\TextEntry::make('description')->html()->limit(30),
                         Infolists\Components\TextEntry::make('criteria'),
                         Infolists\Components\TextEntry::make('status')
                             ->badge()

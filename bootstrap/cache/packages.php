@@ -1,4 +1,11 @@
 <?php return array (
+  'anourvalar/eloquent-serialize' => 
+  array (
+    'aliases' => 
+    array (
+      'EloquentSerialize' => 'AnourValar\\EloquentSerialize\\Facades\\EloquentSerializeFacade',
+    ),
+  ),
   'bezhansalleh/filament-shield' => 
   array (
     'providers' => 
@@ -108,6 +115,17 @@
       0 => 'Laravel\\Tinker\\TinkerServiceProvider',
     ),
   ),
+  'laravolt/indonesia' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Laravolt\\Indonesia\\ServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'Indonesia' => 'Laravolt\\Indonesia\\Facade',
+    ),
+  ),
   'livewire/livewire' => 
   array (
     'providers' => 
@@ -117,6 +135,17 @@
     'aliases' => 
     array (
       'Livewire' => 'Livewire\\Livewire',
+    ),
+  ),
+  'maatwebsite/excel' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Maatwebsite\\Excel\\ExcelServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'Excel' => 'Maatwebsite\\Excel\\Facades\\Excel',
     ),
   ),
   'nesbot/carbon' => 
@@ -140,6 +169,13 @@
       0 => 'Termwind\\Laravel\\TermwindServiceProvider',
     ),
   ),
+  'pxlrbt/filament-excel' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'pxlrbt\\FilamentExcel\\FilamentExcelServiceProvider',
+    ),
+  ),
   'ryangjchandler/blade-capture-directive' => 
   array (
     'providers' => 
@@ -149,6 +185,17 @@
     'aliases' => 
     array (
       'BladeCaptureDirective' => 'RyanChandler\\BladeCaptureDirective\\Facades\\BladeCaptureDirective',
+    ),
+  ),
+  'saade/filament-autograph' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Saade\\FilamentAutograph\\FilamentAutographServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'FilamentAutograph' => 'Saade\\FilamentAutograph\\Facades\\FilamentAutograph',
     ),
   ),
   'spatie/laravel-ignition' => 

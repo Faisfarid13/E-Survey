@@ -259,6 +259,30 @@ class EventResponsePost extends Component implements HasForms
 //                        ->schema([
 //                            // ...
 //                        ]),
+//                    Wizard\Step::make('Billing')
+//                        ->schema([
+//                            // ...
+//                        ]),
+//                    Wizard\Step::make('Billing')
+//                        ->schema([
+//                            // ...
+//                        ]),
+//                    Wizard\Step::make('Billing')
+//                        ->schema([
+//                            // ...
+//                        ]),
+//                    Wizard\Step::make('Billing')
+//                        ->schema([
+//                            // ...
+//                        ]),
+//                    Wizard\Step::make('Billing')
+//                        ->schema([
+//                            // ...
+//                        ]),
+//                    Wizard\Step::make('Billing')
+//                        ->schema([
+//                            // ...
+//                        ]),
                 ])->submitAction(new HtmlString(Blade::render(<<<BLADE
                         <x-filament::button
                             type="submit"

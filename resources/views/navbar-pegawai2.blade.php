@@ -3,12 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Tambahkan link ke CDN Tailwind CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
     <title>@yield('title')</title>
+    <link rel="icon" type="logokemenag.png" href="/asset/logokemenag.png"/>
     <!--Font-->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Tambahkan tailwind css-->
+    @vite(['resources/css/app.css'])
+    <!-- jQuery -->
+    @vite(['resources/js/app.js'])
+    
 </head>
 <body>
 
@@ -16,13 +19,14 @@
 <nav class="bg-white p-3 drop-shadow-xl" style="font-family: 'Poppins';">
         <div class="container mx-auto flex justify-between items-center">
             <!-- Logo -->
-            <div class="flex items-center space-x-2">
-                <img src="{{ asset('/asset/logokemenag.png') }}" alt="Logo" class="w-12 h-12">
+            <div id="masterLogo" onclick="window.location.href='/'" class="flex items-center space-x-2 cursor-pointer">
+                <img src="/asset/logokemenag.png" alt="Logo" class="w-12 h-12">
                 <h1 class="text-[#137C13] text-xs font-bold" style="font-family: 'Poppins';">
                     Badan Litbang dan Diklat <br>
                     <span class="text-sm">Kementerian Agama RI</span>
                 </h1> 
             </div>
+            <!-- handler klik logo -->
 
         <!-- Menu untuk Desktop -->
         <ul class="hidden md:flex lg:flex space-x-6 text-[#137C13] text-lg font-semibold items-center">
@@ -30,20 +34,28 @@
                     <a class="nav-link text-[#137C13] hover:text-gray-200" href="/dashboard">Dashboard</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link text-[#137C13] hover:text-gray-200" href="/analisis">Data</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link text-[#137C13] hover:text-gray-200" href="/listpegawai">Survei</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-[#137C13] hover:text-gray-200" href="/riwayats">Riwayat Survei</a>
                 </li>
-            <li class="relative w-32 h-8 group">
-                <div class="rounded-full border-white border-2 bg-cover text-absolute inset-y-0 left-0 w-8 h-8" style="background-image: url({{ asset('/asset/profile.svg') }})"></div>
+            <li class="flex grid-cols-2 w-fit">    
+                {{-- profile photo --}}
+                @if(auth()->check() && auth()->user()->photo)
+                    <div class="p-1 h-10 w-10 rounded-full bg-cover bg-center border" style="background-image: url('{{ asset('storage/' . auth()->user()->photo) }}')"></div>
+                @else
+                    <div class="p-1 h-10 w-10 rounded-full bg-cover" style="background-image: url({{ asset('/asset/profile.svg') }})"></div>
+                @endif
                 @auth
-                <button id="profile-button" class="focus:outline-none absolute inset-y-0 right-0 w-22 h-8 text-lg font-semibold" href='#'>{{ auth()->user()->name }}</button>
+                <div id="profile-button" class="cursor-pointer p-2 w-fit">{{auth()->user()->name}}</div>
                 @endauth
-                <div id="profile-dropdown" class="z-40 hidden bg-white text-[#137C13] text-center p-2 rounded-lg shadow-lg right-0 absolute">
-                  <a href="#" class='block btn btn-light rounded-lg px-6 py-1 border-2 border-gray border-solid'>Profile</a>
+                <div id="profile-dropdown" class="hidden bg-white text-[#137C13] text-center p-2 rounded-lg right-8 shadow-lg mx-auto mt-14 absolute">
+                  <a href="/profile" class='block btn btn-light rounded-lg px-6 py-1 border-2 border-gray border-solid'>Profile</a>
                   <div class="mt-1">
-                  <a href="/" class='block btn btn-light rounded-lg px-6 py-1 border-2 border-gray border-solid'>Keluar</a>
+                  <a href="/logout" class='block btn btn-light rounded-lg px-6 py-1 border-2 border-gray border-solid'>Keluar</a>
                 </div>
             </li>
         </ul>
@@ -61,19 +73,17 @@
 </nav>
 
 <!-- Dropdown Menu untuk Mode Mobile -->
-<div id="dropdown-menu" class="hidden bg-white text-[#137C13] font-semibold py-4 lg:hidden">
-    <ul class="text-center space-y-4">
+<div id="dropdown-menu" class="relative hidden bg-white text-[#137C13] font-semibold py-4 lg:hidden">
+    <ul class="text-center space-y-4 ">
         <li><a href="#" class="text-[#137C13] hover:text-gray-200">Dashboard</a></li>
         <li><a href="#" class="text-[#137C13] hover:text-gray-200">Survey</a></li>
         <li><a href="/riwayats" class="text-[#137C13] hover:text-gray-200">Riwayat</a></li>
         <li class="relative">
-            @auth
             <button class="text-center text-[#266C3E] font-semibold hover:text-gray-200" id="username-dropdown-button">{{ auth()->user()->name }}</button>
-            @endauth
             <div class="hidden bg-white text-[#137C13] ml-28 mt-20 p-2 rounded-lg shadow-lg absolute left-1/2 transform -translate-x-1/2 -top-20" id="username-dropdown">
                 <a href="#" class="block btn btn-light rounded-lg px-6 py-1 border-2 border-gray border-solid">Profile</a>
                 <div class="mt-1">
-                <a href="/" class="block btn btn-light rounded-lg px-6 py-1 border-2 border-gray border-solid">Keluar</a>
+                <a href="/logout" class="block btn btn-light rounded-lg px-6 py-1 border-2 border-gray border-solid">Keluar</a>
             </div>
         </li>
     </ul>
@@ -126,7 +136,7 @@
         <div class="mx-auto w-full max-w-screen-xl p-4 py-1 md:py-6 lg:py-8">
             <div class="md:mt-12 mt-8 md:flex md:justify-between">
                 <div class="mr-4 md:mb-0">
-                    <img src="{{ asset('/asset/logokemenag.png') }}" class="w-[86px] h-[82px]"/>
+                    <img src="/asset/logokemenag.png" class="w-[86px] h-[82px]"/>
                     <div class="flex my-4">
                         <a href="#"> <iconify-icon class="mr-3" icon="iconoir:youtube" style="color: white;" width="35"></iconify-icon> </a>
                         <a href="#"> <iconify-icon icon="iconoir:instagram" style="color: white;" width="35"></iconify-icon> </a>

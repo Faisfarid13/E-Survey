@@ -28,6 +28,8 @@ return [
         //     'encrypted' => true,
         // ],
 
+        'force_https' => false,
+
     ],
 
     /*

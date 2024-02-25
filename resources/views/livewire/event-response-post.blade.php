@@ -3,7 +3,7 @@
         <div class="mx-auto px-4 py-4 lg:flex lg:items-center">
             <div class="mx-auto max-w-full text-center">
                 <h1 class="text-xl font-extrabold sm:text-xl">
-                    Formulir Curriculum Vitae <br>{{$event->name}}
+                    Form Kegiatan <br>{{$event->name}}
                 </h1>
                 <p class="mt-4 sm:text-xl/relaxed">
                     {!! $event->location !!}

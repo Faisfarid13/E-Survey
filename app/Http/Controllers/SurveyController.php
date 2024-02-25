@@ -2,39 +2,55 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Carbon\Carbon;
 use App\Models\Survey;
+use App\Models\Event;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
 
 class SurveyController extends Controller
 {
     public function index(){
-        return view('guest.homepage', [
-            'surveys' => Survey::all()
-        ]);
+        $now = date('Y-m-d');
+        $events = Event::latest()->where('date_start', '<=', $now )
+        ->get();
+
+        $surveys = Survey::where('criteria', 'umum')
+            ->filter(request(['search']))
+            ->where('status', 'AKTIF')
+            ->get();
+
+        return view('guest.homepage', compact('events','surveys'));
     }
 
-   public function dashboard() {
+    public function dashboard() {
         $now = date('Y-m-d');
         $surveys = Survey::where('tanggal_selesai', '>=', $now)
             ->orderBy('criteria')
             ->get();
-    
-        return view('pegawai.dashboard', compact('surveys'));
+
+        $events = Event::latest()->where('date_start', '<=', $now )
+        ->get();
+
+        return view('pegawai.dashboard', compact('surveys', 'events'));
     }
 
-    public function riwayat(){
+    public function riwayat(Request $request){
+        $perPage = $request->input('entries', 5);
+        $search = $request->input('search');
+        
+        $query = Survey::where('status', 'SELESAI') 
+        ->where('criteria', 'pegawai', 'unit'); 
+        
+
+        if ($search) {
+            $query->where('title', 'like', '%' . $search . '%');
+        }
+
+        $surveys = $query->paginate($perPage);
+
         return view('pegawai.riwayatSurvey', [
-            'surveys' => Survey::Where('status', 'SELESAI')
-            ->where('criteria', 'pegawai', 'unit')
-            ->get()
-        ]);
-    }
-
-    public function listguest(){
-        return view('guest.surveyListGuest', [
-            'surveys' => Survey::Where('criteria', 'umum')
-            ->where('status', 'AKTIF')
-            ->get()
+            'surveys' => $surveys
         ]);
     }
 
@@ -45,9 +61,21 @@ class SurveyController extends Controller
             ->get()
         ]);
     }
+    
+    public function listAnalis(){
+        $query = Survey::where('status', 'SELESAI')
+            ->where(function($query){
+                $query->whereNotNull('code')->orWhere('code','!=','');
+            })
+            ->paginate(5);
+
+        return view('guest.analisis',[
+            'surveys' => $query
+        ]);
+    }
 
     public function hasilAnalis($scriptId){
-        return view('hasilAnalis', [
+        return view('.guest.hasilAnalis', [
             'surveys' => Survey::where('id', $scriptId)->get()
         ]);
     }
@@ -68,6 +96,30 @@ class SurveyController extends Controller
 
         return view('pegawai.surveyList', [
             'surveys' => $surveys
+        ]);
+    }
+
+    public function listGuest(Request $request){
+        $perPage = $request->input('entries', 5);
+        $search = $request->input('search');
+        
+        $query = Survey::where('criteria', 'umum')
+        ->where('status', 'AKTIF');
+
+        if($search){
+            $query->where('title', 'like', '%' . $search . '%');
+        }
+
+        $surveys = $query->paginate($perPage);
+
+        return view('guest.surveyListGuest', [
+            'surveys' => $surveys
+        ]);
+    }
+
+    public function detailsurvey($id){
+        return view('detailsurvey', [
+            'surveys' => Survey::where('id', $id)->get()
         ]);
     }
 

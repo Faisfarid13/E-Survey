@@ -25,50 +25,50 @@ class ListSurveys extends ListRecords
     {
         return [
             Actions\CreateAction::make()->label('Buat Survey'),
-            Action::make('Bagikan Survey')
-                ->label('Bagikan Survey')
-                ->icon('heroicon-o-share')
-                ->form([
-                    Select::make('title')
-                        ->label('Judul Survey')
-                        ->options(Survey::query()->pluck('title', 'id'))
-                        ->required()
-                        ->live()
-                        ->afterStateUpdated(fn (Select $component) => $component
-                        ->getContainer()
-                        ->getComponent('dynamicTypeFields')
-                        ->getChildComponentContainer()
-                        ->fill()),
+            // Action::make('Bagikan Survey')
+            //     ->label('Bagikan Survey')
+            //     ->icon('heroicon-o-share')
+            //     ->form([
+            //         Select::make('title')
+            //             ->label('Judul Survey')
+            //             ->options(Survey::query()->pluck('title', 'id'))
+            //             ->required()
+            //             ->live()
+            //             ->afterStateUpdated(fn (Select $component) => $component
+            //             ->getContainer()
+            //             ->getComponent('dynamicTypeFields')
+            //             ->getChildComponentContainer()
+            //             ->fill()),
 
-                    Grid::make(1)
-                                ->schema(fn (Get $get): array => match ($get('title')) {
-                                    $get('title') => 
-                                        [
-                                        RichEditor::make('description')
-                                        ->label('Deskripsi')
-                                        ->default(strip_Tags(Survey::Where('id' , $get('title'))->pluck('description')))
-                                        ->required()
-                                    ],
-                                    default => [],
-                                })
-                                ->key('dynamicTypeFields'),
-                ])
-                ->action(function (array $data, Survey $record): void {
-                    $record->author()->associate($data['id']);
-                    $record->save();
-                })
-                ->extraModalFooterActions([
-                    Action::make('Copy Link')
-                        ->icon('heroicon-o-clipboard')
-                        ->color('secondary')
-                        ->form([
-                            TextInput::make('Links')
-                            ->default(url()->previous())
-                            // ->copyable()
-                            // ->copyMessage('Link copied to clipboard')
-                            // ->copyMessageDuration(1500)
-                        ])
-                ])
+            //         Grid::make(1)
+            //                     ->schema(fn (Get $get): array => match ($get('title')) {
+            //                         $get('title') => 
+            //                             [
+            //                             RichEditor::make('description')
+            //                             ->label('Deskripsi')
+            //                             ->default(strip_Tags(Survey::Where('id' , $get('title'))->pluck('description')))
+            //                             ->required()
+            //                         ],
+            //                         default => [],
+            //                     })
+            //                     ->key('dynamicTypeFields'),
+            //     ])
+            //     ->action(function (array $data, Survey $record): void {
+            //         $record->author()->associate($data['id']);
+            //         $record->save();
+            //     })
+            //     ->extraModalFooterActions([
+            //         Action::make('Copy Link')
+            //             ->icon('heroicon-o-clipboard')
+            //             ->color('secondary')
+            //             ->form([
+            //                 TextInput::make('Links')
+            //                 ->default(url()->previous())
+            //                 // ->copyable()
+            //                 // ->copyMessage('Link copied to clipboard')
+            //                 // ->copyMessageDuration(1500)
+            //             ])
+            //     ])
         ];
     }
     protected function getHeaderWidgets(): array

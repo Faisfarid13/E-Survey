@@ -22,12 +22,13 @@ class QuestionsRelationManager extends RelationManager
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('question')
+                Forms\Components\Textarea::make('question')
                     ->required()
                     ->maxLength(255),
                 Forms\Components\Select::make('section_id')
                     ->label('Section')
                     ->disabledOn('edit')
+                    ->required()
                     ->options(function (RelationManager $livewire): array {
                     return $livewire->getOwnerRecord()->section()
                         ->pluck('section','id')
@@ -36,6 +37,8 @@ class QuestionsRelationManager extends RelationManager
                 Forms\Components\Select::make('question_category_id')
                     ->relationship('question_category', 'type')->relationship('question_category', 'type')
                     ->live()
+                    ->required()
+                    ->visibleOn('create')
                     ->disabledOn('edit')
                     ->afterStateUpdated(fn (Select $component) => $component
                     ->getContainer()
@@ -57,20 +60,30 @@ class QuestionsRelationManager extends RelationManager
                     },)
                     ->key('dynamicTypeFields'),
 
-                    Grid::make(1)
-                    ->schema(fn (Get $get): array => match ($get('question_category_id'))
-                    {
-                        '4', '5'=> [
-                            Forms\Components\Repeater::make('choice')
-                            ->relationship()
-                             ->visibleOn('edit')
-                            ->schema([
-                                Forms\Components\TextInput::make('pilihan_pertanyaan')->label('Pilihan_pertanyaan')->required(),
-                            ])
-                            ],
-                        default => [],
-                    },)
-                    ->key('dynamicTypeFields'),
+                    // Forms\Components\Select::make('question_category_id')
+                    // ->relationship('question_category', 'type')->relationship('question_category', 'type')
+                    // ->disabledOn('create')
+                    // ->visibleOn('edit')
+                    // ->afterStateUpdated(fn (Select $component) => $component
+                    // ->getContainer()
+                    // ->getComponent('cobacoba')
+                    // ->getChildComponentContainer()
+                    // ->fill()),
+
+                    // Grid::make(1)
+                    // ->schema(fn (Get $get): array => match ($get('question_category_id'))
+                    // {
+                    //     '4', '5'=> [
+                    //         Forms\Components\Repeater::make('choice')
+                    //         ->relationship()
+                    //          ->visibleOn('edit')
+                    //         ->schema([
+                    //             Forms\Components\TextInput::make('pilihan_pertanyaan')->label('Pilihan_pertanyaan')->required(),
+                    //         ])
+                    //         ],
+                    //     default => [],
+                    // },)
+                    // ->key('cobacoba'),
 
 
 
@@ -146,7 +159,7 @@ class QuestionsRelationManager extends RelationManager
                 Tables\Columns\TextColumn::make('question')
                     ->label('Pertanyaan'),
                 Tables\Columns\TextColumn::make('question_category.type')
-                    ->label('Jenis Pertanyaan')->searchable(),
+                    ->label('Jenis Pertanyaan'),
             ])
             ->filters([
                 //
